@@ -1,7 +1,7 @@
 {
   "schemaVersion": "assets-v1",
   "targetSession": "2026-10-14",
-  "retrievedAt": "2026-10-14T17:20:40.964752+00:00",
+  "retrievedAt": "2026-10-14T17:40:29.747412+00:00",
   "records": [
     {
       "name": "浦发银行",
@@ -9,7 +9,7 @@
       "currency": "CNY",
       "unit": "元/股",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh600000",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600000,day,,,120,qfq",
@@ -27,7 +27,7 @@
       "currency": "CNY",
       "unit": "元/份",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh510300",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh510300,day,,,120,qfq",
@@ -45,7 +45,7 @@
       "currency": "CNY",
       "unit": "元/份",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh511010",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh511010,day,,,120,qfq",
@@ -63,7 +63,7 @@
       "currency": "CNY",
       "unit": "元/份",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh518880",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh518880,day,,,120,qfq",
@@ -81,7 +81,7 @@
       "currency": "CNY",
       "unit": "元/份",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh508000",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh508000,day,,,120,qfq",
@@ -99,7 +99,7 @@
       "currency": "CNY",
       "unit": "点",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh000001",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000001,day,,,120,qfq",
@@ -117,7 +117,7 @@
       "currency": "CNY",
       "unit": "点",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sz399006",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz399006,day,,,120,qfq",
@@ -135,7 +135,7 @@
       "currency": "CNY",
       "unit": "点",
       "kind": "quote",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "source": "腾讯",
       "sourceUrl": "https://qt.gtimg.cn/q=sh000300",
       "historySourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000300,day,,,120,qfq",
@@ -148,13 +148,13 @@
       "freshness": "same-date"
     },
     {
+      "name": "华夏成长混合",
       "date": "2026-10-14",
       "currency": "CNY",
       "unit": "单位净值",
       "kind": "nav",
-      "basis": "自动取数可用，数据商数值保存在本地，不随公开包传播。",
+      "basis": "已实现本地自动取数；未经许可不随公开包传播数据商数值。",
       "id": "000001",
-      "name": "基金000001",
       "assetClass": "公募基金",
       "status": "local-auto-supported",
       "tier": "secondary",
@@ -1676,7 +1676,7 @@
       "source": "中国货币网",
       "url": "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?startDate=2026-06-16&endDate=2026-10-14",
       "status": "success",
-      "sha256": "1df640719f16e5b526fef88319ad312134a5af471b94ca9cd255e9a99782a87f"
+      "sha256": "1614886dc50ad0d2e9016604ab2f58477d4445d2fdc28ebbb4ff5a7f9d46f0c1"
     },
     {
       "source": "中债",
@@ -1686,6 +1686,7 @@
     }
   ],
   "scope": "selected instruments and reference series, not entire market or personal assets",
+  "transportNotes": [],
   "manualClasses": [
     "存款合同利率",
     "理财产品兑付和赎回条款",

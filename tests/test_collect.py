@@ -35,3 +35,10 @@ class Collect(unittest.TestCase):
 
  def test_boolean_quote_value(self):
   with self.assertRaises(ValueError):c.value(True)
+
+ def test_fallback_not_self_crosscheck(self):
+  x=['0']*32;x[0]='测试';x[2]='9';x[3]='10';x[30]='2026-10-14';x[31]='15:00:00';raw=('var hq_str_sh600000="'+','.join(x)+'";').encode('gb18030')
+  def transport(url,post):
+   if 'sinajs' in url:return raw
+   raise OSError('offline')
+  d=c.collect({'securities':[{'symbol':'sh600000','assetClass':'股票'}]},'2026-10-14',transport);r=d['records'][0];self.assertEqual(r['source'],'新浪');self.assertEqual(r['crossCheck']['status'],'unavailable');self.assertEqual(r['crossCheck']['otherSource'],'腾讯')
