@@ -1,0 +1,98 @@
+{
+  "asOf": "2026-10-14",
+  "retrievedAt": null,
+  "sse": [],
+  "csi300": [],
+  "indices": [],
+  "sources": [],
+  "breadth": null,
+  "expectedSessions": [
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14"
+  ],
+  "breadthHistory": [
+    {
+      "date": "2026-10-08",
+      "up": 40,
+      "flat": 10,
+      "down": 50,
+      "total": 100,
+      "poolId": "SYNTHETIC-TEST",
+      "methodVerified": true
+    },
+    {
+      "date": "2026-10-09",
+      "up": 40,
+      "flat": 10,
+      "down": 50,
+      "total": 100,
+      "poolId": "SYNTHETIC-TEST",
+      "methodVerified": true
+    },
+    {
+      "date": "2026-10-12",
+      "up": 40,
+      "flat": 10,
+      "down": 50,
+      "total": 100,
+      "poolId": "SYNTHETIC-TEST",
+      "methodVerified": true
+    },
+    {
+      "date": "2026-10-13",
+      "up": 40,
+      "flat": 10,
+      "down": 50,
+      "total": 100,
+      "poolId": "SYNTHETIC-TEST",
+      "methodVerified": true
+    },
+    {
+      "date": "2026-10-14",
+      "up": 40,
+      "flat": 10,
+      "down": 50,
+      "total": 100,
+      "poolId": "SYNTHETIC-TEST",
+      "methodVerified": true
+    }
+  ],
+  "exitPressure": {
+    "date": "2026-10-14",
+    "ruleVersion": "synthetic-test-v1",
+    "poolId": "SYNTHETIC-TEST",
+    "methodVerified": true,
+    "expected": 100,
+    "reported": 100,
+    "downLimit": 0,
+    "suspended": 0,
+    "zeroVolumeDown": 0
+  },
+  "coverage": {
+    "SSE": {
+      "status": "verified-snapshot",
+      "date": "2026-10-14",
+      "unit": "CNY-100m",
+      "securityScope": "A-share",
+      "turnover": 1
+    },
+    "SZSE": {
+      "status": "verified-snapshot",
+      "date": "2026-10-14",
+      "unit": "CNY-100m",
+      "securityScope": "A-share",
+      "turnover": 1
+    },
+    "BSE": {
+      "status": "verified-snapshot",
+      "date": "2026-10-14",
+      "unit": "CNY-100m",
+      "securityScope": "A-share",
+      "turnover": 1
+    }
+  },
+  "synthetic": true
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股尾部风险研究"
+  short_description: "分析随机性、极端损失、生存约束与利益绑定，识别A股持仓的脆弱环节"
+  default_prompt: "使用 $a-share-tail-risk 分析我的A股研究或持仓，给出证据、压力情景和风险边界。"

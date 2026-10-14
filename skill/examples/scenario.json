@@ -1,0 +1,22 @@
+{
+  "basis": "原创合成教学，不代表市场规则或推荐仓位；资产价值比例，未模拟退出与成本。",
+  "recovery": {
+    "drawdown": 0.5
+  },
+  "limitPath": {
+    "dailyDrop": 0.1,
+    "days": 3
+  },
+  "portfolio": {
+    "unleveredLinear": true,
+    "cashWeight": 0.8,
+    "cashShock": 0,
+    "positions": [
+      {
+        "id": "synthetic-stock",
+        "weight": 0.2,
+        "shock": -1
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "basis": "全部为原创合成，不代表A股当前规则、融资合同、推荐比例或真实概率。",
+  "compoundPath": {
+    "returns": [
+      0.5,
+      -0.5
+    ]
+  },
+  "cashConstraints": {
+    "unit": "CNY",
+    "snapshotValuesAfterPriorPayments": true,
+    "snapshots": [
+      {
+        "date": "2026-10-14",
+        "availableCash": 100,
+        "dueCash": 80,
+        "reserveFloor": 30,
+        "debt": 100,
+        "eligibleCollateral": 120,
+        "requiredRatio": 1.3
+      },
+      {
+        "date": "2026-10-15",
+        "availableCash": null,
+        "dueCash": 50,
+        "reserveFloor": 20,
+        "debt": null,
+        "eligibleCollateral": null,
+        "requiredRatio": null
+      }
+    ]
+  },
+  "jointShocks": {
+    "base": {
+      "unleveredLinear": true,
+      "cashWeight": 0.2,
+      "positions": [
+        {
+          "id": "A",
+          "weight": 0.4
+        },
+        {
+          "id": "B",
+          "weight": 0.4
+        }
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "single",
+        "cashShock": 0,
+        "shocks": {
+          "A": -0.3,
+          "B": 0
+        }
+      },
+      {
+        "id": "common",
+        "cashShock": 0,
+        "shocks": {
+          "A": -0.3,
+          "B": -0.3
+        }
+      }
+    ]
+  },
+  "localResponse": {
+    "axis": "合成冲击强度",
+    "axisUnit": "无量纲",
+    "payoffUnit": "CNY",
+    "absoluteSlopeTolerance": 0,
+    "points": [
+      {
+        "shock": 0,
+        "grossPayoff": 0,
+        "cost": 0
+      },
+      {
+        "shock": 1,
+        "grossPayoff": 1,
+        "cost": 0
+      },
+      {
+        "shock": 2,
+        "grossPayoff": 4,
+        "cost": 4
+      }
+    ]
+  }
+}
