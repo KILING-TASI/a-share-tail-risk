@@ -1,0 +1,23 @@
+"""One command for local market + selected assets + report. New directory only."""
+import argparse,json,subprocess,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--session',required=True);ap.add_argument('--output',required=True);ap.add_argument('--manifest',default=str(ROOT/'skill/examples/asset-manifest.json'));ap.add_argument('--previous-assets');ap.add_argument('--observations');a=ap.parse_args();out=Path(a.output)
+ if out.exists():ap.exit(2,'Use a new version directory; frozen results are not overwritten.\n')
+ out.mkdir(parents=True)
+ def run(args):subprocess.run([sys.executable]+[str(x) for x in args],check=True)
+ market=out/'market';run([ROOT/'tools/update_market.py','--input',ROOT/'examples/official-statistics-20261014.json','--session',a.session,'--output',market]);assets=out/'assets.json';args=[ROOT/'skill/scripts/collect_assets.py','--manifest',a.manifest,'--session',a.session,'--output',assets]
+ if a.previous_assets:args+=['--previous',a.previous_assets]
+ run(args)
+ data=json.loads((market/'market-data.json').read_text(encoding='utf-8'));quotes=json.loads(assets.read_text(encoding='utf-8'))
+ csi=next((r for r in quotes['records'] if r['id']=='sh000300' and r['status']=='available'),None)
+ if csi:
+  data['csi300']=[{'date':x['date'],'close':x['value']} for x in csi.get('history',[])];data['sources'].append({'name':'腾讯沪深300历史价格版本','url':csi['historySourceUrl']})
+ if a.observations:
+  obs=json.loads(Path(a.observations).read_text(encoding='utf-8'))
+  if obs['asOf']!=a.session:raise ValueError('observation date mismatch')
+  for k in ('expectedSessions','breadthHistory','breadth','exitPressure','exitHistory','breadthScope','exitScope'):data[k]=obs[k]
+ combined=out/'combined-market.json';combined.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+ run([ROOT/'tools/render_dashboard.py','--input',combined,'--session',a.session,'--assets',assets,'--output',out/'dashboard.html']);print(out/'dashboard.html')
+if __name__=='__main__':main()

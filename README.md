@@ -2,7 +2,7 @@
 
 用市场数据和持仓情景，识别不能承受的损失、退出约束与证据缺口。范围包括家庭和企业的现金、存款、债券、理财、房地产、黄金、外汇、经营资产及负债。研究框架参考塔勒布《随机漫步的傻瓜》《黑天鹅》《反脆弱》《非对称风险》，以中国A股制度组织原创分析。
 
-[打开市场观察看板](https://kiling-tasi.github.io/a-share-tail-risk/) · [查看 Skill](skill/SKILL.md) · [数据接入说明](DATA.md) · [数据源分工](SOURCES.md)
+[打开市场观察看板](https://kiling-tasi.github.io/a-share-tail-risk/) · [查看 Skill](skill/SKILL.md) · [数据接入说明](DATA.md) · [数据源分工](SOURCES.md) · [自动取数](AUTO_DATA.md)
 
 ## 能回答什么
 
@@ -18,12 +18,22 @@
 
 > 用 a-share-tail-risk 检查我的组合：持有三只股票，资金两个月后要用，没有融资。先说明需要哪些持仓数据，再分析共同下跌和无法及时卖出的风险。
 
-基本分析只需能读取 Skill 的助手。复算脚本需 Python 3.10 或以上，不需要第三方依赖：
+基本分析只需能读取 Skill 的助手。自动取数、复算与本地看板需 Python 3.10 或以上，不需要第三方 Python 依赖：
 
 ```sh
 python skill/scripts/risk_math.py --input skill/examples/scenario.json
 python skill/scripts/asset_ledger.py --input skill/examples/asset-ledger.json
 ```
+
+## 自动取得数据
+
+股票、指数、ETF、REITs、基金净值、黄金合约、国债收益率、Shibor和汇率已接通自动来源。单独Skill可以取数并生成HTML；完整仓库可以一条命令联动官方统计、资产数据和看板：
+
+```sh
+python tools/refresh_all.py --session 2026-10-14 --output local-snapshots/20261014-v1
+```
+
+默认代码是连接验收清单，可以替换。它不是全市场池；存款、理财、房产和个人负债需具体合同或估值资料。[操作和覆盖说明](AUTO_DATA.md)。
 
 ## 市场看板
 
@@ -36,7 +46,7 @@ python tools/render_dashboard.py --input examples/empty-market.json --session 20
 python tools/update_market.py --input examples/empty-market.json --session 2026-10-14 --output local-snapshots/20261014
 ```
 
-更新器尝试官方市场统计；深市文件缺少内部日期时保留“请求日期”状态，不能仅凭请求参数认定日期正确。北交所访问失败、连续广度缺历史、退出记录不足均保留缺口。不会自动抓取禁止批量采集的数据商网站。更新目录与报告禁止覆盖，以保留冻结结果。
+更新器尝试官方市场统计；深市XLSX与官方JSON报告的日期、A股范围和金额自动交叉核验；不能仅凭请求参数认定日期正确。北交所访问失败、连续广度缺历史、退出记录不足均保留缺口。不会自动抓取禁止批量采集的数据商网站。更新目录与报告禁止覆盖，以保留冻结结果。
 
 ## 验证与边界
 

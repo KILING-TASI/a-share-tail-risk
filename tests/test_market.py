@@ -44,3 +44,13 @@ class Market(unittest.TestCase):
   b=io.BytesIO()
   with zipfile.ZipFile(b,'w') as z:z.writestr('xl/worksheets/sheet1.xml','<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData><row><c r="A1" t="inlineStr"><is><t>类别</t></is></c><c r="C1"><v>12</v></c></row></sheetData></worksheet>')
   self.assertEqual(u.xlsx_rows(b.getvalue()),[['类别','','12']])
+
+ def test_sz_json_date_and_a_scope(self):
+  import update_market as u
+  r=[{'metadata':{'subname':self.day,'cols':{'cjje':'成交金额(亿元)'}},'data':[{'lbmc':'主板A股','cjje':'10'},{'lbmc':'创业板A股','cjje':'20'},{'lbmc':'主板B股','cjje':'999'}]}];self.assertEqual(u.sz_json(json.dumps(r).encode(),self.day),[10,20])
+ def test_sz_json_wrong_date(self):
+  import update_market as u
+  with self.assertRaises(ValueError):u.sz_json(json.dumps([{'metadata':{'subname':'2026-10-13','cols':{'cjje':'亿元'}}}]).encode(),self.day)
+ def test_sz_json_wrong_unit(self):
+  import update_market as u
+  with self.assertRaises(ValueError):u.sz_json(json.dumps([{'metadata':{'subname':self.day,'cols':{'cjje':'元'}}}]).encode(),self.day)

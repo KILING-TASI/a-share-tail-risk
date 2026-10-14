@@ -1,5 +1,5 @@
 """Bounded public-source refresh. Failures remain explicit; no authentication bypass."""
-import sys,argparse,hashlib,io,json,re,urllib.request,urllib.parse,zipfile
+import html,sys,argparse,hashlib,io,json,re,urllib.request,urllib.parse,zipfile
 import xml.etree.ElementTree as E
 from datetime import date,datetime,timezone
 from pathlib import Path
@@ -22,6 +22,16 @@ def xlsx_rows(raw):
                 v=c.find('m:v',ns);text=v.text if v is not None else ''.join(c.itertext());vals.append(shared[int(text)] if c.get('t')=='s' else text)
             rows.append(vals)
         return rows
+def sz_json(raw,target):
+    report=json.loads(raw)[0];meta=report['metadata']
+    if meta.get('subname')!=target or '亿元' not in meta.get('cols',{}).get('cjje',''):raise ValueError('SZSE report date or unit mismatch')
+    rows={html.unescape(r['lbmc']).strip():r for r in report['data']}
+    values=[float(rows[k]['cjje'].replace(',','')) for k in ('主板A股','创业板A股')]
+    for v in values:
+        from market_contract import real
+        real(v)
+    return values
+
 def main():
     if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
     ap=argparse.ArgumentParser();ap.add_argument('--input',required=True);ap.add_argument('--session',required=True);ap.add_argument('--output',required=True);ap.add_argument('--sz-date-proof');a=ap.parse_args();date.fromisoformat(a.session)
@@ -47,8 +57,11 @@ def main():
         try:
             rows=xlsx_rows(raw);assert rows[0][2]=='成交金额(元)';lookup={r[0].strip():r for r in rows[1:]};value=sum(float(lookup[k][2].replace(',','')) for k in ('主板A股','创业板A股'))/1e8
             proof=json.loads(Path(a.sz_date_proof).read_text(encoding='utf-8')) if a.sz_date_proof else {}
+            ju='https://www.szse.cn/api/report/ShowReport/data?'+urllib.parse.urlencode(dict(CATALOGID='1803_sczm',TABKEY='tab1',txtQueryDate=a.session))
+            jr=fetch('SZSE-date-proof',ju)
+            if jr:proof={'date':a.session,'source':'https://www.szse.cn/market/overview/index.html','aShareAmountsCny100m':sz_json(jr,a.session)}
             verified=proof.get('date')==a.session and proof.get('aShareAmountsCny100m')==[round(float(lookup[k][2].replace(',',''))/1e8,2) for k in ('主板A股','创业板A股')] and proof.get('source')=='https://www.szse.cn/market/overview/index.html'
-            coverage['SZSE']=dict(status='verified-snapshot' if verified else 'requested-date-only',date=a.session,securityScope='A-share',unit='CNY-100m',turnover=value,reason='XLSX has no internal date; independent dated webpage/date and amount proof required')
+            coverage['SZSE']=dict(status='verified-snapshot' if verified else 'requested-date-only',date=a.session,securityScope='A-share',unit='CNY-100m',turnover=value,reason='XLSX checked against official JSON report subname date and CNY-100m amounts; query parameter alone is not proof')
         except Exception as e:coverage['SZSE']=dict(status='format-unconfirmed',error=str(e))
     u='https://www.bse.cn/static/statisticdata.html';raw=fetch('BSE',u);coverage['BSE']=dict(status='unavailable' if raw is None else 'unparsed',reason='no verified same-date A-share turnover')
     events.append(dict(source='continuous-breadth',status='permission-required',reason='No automated vendor extraction; load an authorised historical dataset with pool and methodology.'))

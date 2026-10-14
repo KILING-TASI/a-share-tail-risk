@@ -1,0 +1,39 @@
+{
+  "securities": [
+    {
+      "symbol": "sh600000",
+      "assetClass": "股票"
+    },
+    {
+      "symbol": "sh510300",
+      "assetClass": "股票ETF"
+    },
+    {
+      "symbol": "sh511010",
+      "assetClass": "债券ETF"
+    },
+    {
+      "symbol": "sh518880",
+      "assetClass": "黄金ETF"
+    },
+    {
+      "symbol": "sh508000",
+      "assetClass": "公募REITs"
+    },
+    {
+      "symbol": "sh000001",
+      "assetClass": "股票指数"
+    },
+    {
+      "symbol": "sz399006",
+      "assetClass": "股票指数"
+    },
+    {
+      "symbol": "sh000300",
+      "assetClass": "股票指数"
+    }
+  ],
+  "funds": [
+    "000001"
+  ]
+}
