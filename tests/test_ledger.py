@@ -29,5 +29,5 @@ class Ledger(unittest.TestCase):
   self.d['liabilities']*=2
   with self.assertRaises(ValueError):self.run_ledger()
  def test_overflow_scenario(self):
-  self.d['assets']=[{'id':'a','reportingValue':1e308},{'id':'b','reportingValue':1}];self.d['scenarios']=[{'name':'overflow','shocksPct':{'a':70,'b':1e308}}]
+  self.d['assets']=[{'id':'a','reportingValue':1e308},{'id':'b','reportingValue':1e307}];self.d['scenarios']=[{'name':'overflow','shocksPct':{'a':70,'b':100}}]
   with self.assertRaises(ValueError):self.run_ledger()
