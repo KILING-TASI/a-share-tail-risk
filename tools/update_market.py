@@ -1,5 +1,5 @@
 """Bounded public-source refresh. Failures remain explicit; no authentication bypass."""
-import argparse,hashlib,io,json,re,urllib.request,urllib.parse,zipfile
+import sys,argparse,hashlib,io,json,re,urllib.request,urllib.parse,zipfile
 import xml.etree.ElementTree as E
 from datetime import date,datetime,timezone
 from pathlib import Path
@@ -23,6 +23,7 @@ def xlsx_rows(raw):
             rows.append(vals)
         return rows
 def main():
+    if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
     ap=argparse.ArgumentParser();ap.add_argument('--input',required=True);ap.add_argument('--session',required=True);ap.add_argument('--output',required=True);ap.add_argument('--sz-date-proof');a=ap.parse_args();date.fromisoformat(a.session)
     print('开始核验官方统计；访问失败将保留缺口。',flush=True)
     output=Path(a.output)

@@ -2,7 +2,7 @@
 
 用市场数据和持仓情景，识别不能承受的损失、退出约束与证据缺口。研究框架参考塔勒布《随机漫步的傻瓜》《黑天鹅》《反脆弱》《非对称风险》，以中国A股制度组织原创分析。
 
-[打开市场观察看板](https://kiling-tasi.github.io/a-share-tail-risk/) · [查看 Skill](skill/SKILL.md) · [数据接入说明](DATA.md)
+[打开市场观察看板](https://kiling-tasi.github.io/a-share-tail-risk/) · [查看 Skill](skill/SKILL.md) · [数据接入说明](DATA.md) · [数据源分工](SOURCES.md)
 
 ## 能回答什么
 
@@ -26,7 +26,7 @@ python skill/scripts/risk_math.py --help
 
 ## 市场看板
 
-公开页面默认没有行情快照，明确停止全A判断。加载自己有权使用的 JSON 后，本地展示覆盖、连续广度、上海成交历史和退出压力。文件不上传。请核对目标日期确为已完成交易日。`examples/synthetic-contract.json` 是人工测试数据，不能用于市场判断。
+公开页面附2026-10-14冻结的官方成交和估值统计摘要，明确停止全A综合判断；不是实时页面，不附数据商行情。加载自己有权使用的 JSON 后，本地展示覆盖、连续广度、上海成交历史和退出压力。文件不上传。请核对目标日期确为已完成交易日。`examples/synthetic-contract.json` 是人工测试数据，不能用于市场判断。
 
 ```sh
 python tools/render_dashboard.py --input examples/empty-market.json --session 2026-10-14 --output local-view.html

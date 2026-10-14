@@ -1,0 +1,313 @@
+{
+  "asOf": "2026-10-14",
+  "retrievedAt": "2026-10-14T16:17:32.576968+00:00",
+  "sse": [
+    {
+      "date": "2026-08-31",
+      "turnoverA": 7023.54,
+      "turnoverStar": 3127.56,
+      "turnover": 10151.1,
+      "peA": 14.09,
+      "peStar": 126.02,
+      "turnoverRateA": 1.376,
+      "turnoverRateStar": 2.7584
+    },
+    {
+      "date": "2026-09-01",
+      "turnoverA": 6883.0,
+      "turnoverStar": 2566.52,
+      "turnover": 9449.52,
+      "peA": 14.14,
+      "peStar": 122.93,
+      "turnoverRateA": 1.3441,
+      "turnoverRateStar": 2.316
+    },
+    {
+      "date": "2026-09-02",
+      "turnoverA": 6162.98,
+      "turnoverStar": 2196.18,
+      "turnover": 8359.16,
+      "peA": 14.02,
+      "peStar": 120.42,
+      "turnoverRateA": 1.2141,
+      "turnoverRateStar": 2.0114
+    },
+    {
+      "date": "2026-09-03",
+      "turnoverA": 6060.03,
+      "turnoverStar": 2144.57,
+      "turnover": 8204.6,
+      "peA": 14.02,
+      "peStar": 121.21,
+      "turnoverRateA": 1.1933,
+      "turnoverRateStar": 1.9635
+    },
+    {
+      "date": "2026-09-04",
+      "turnoverA": 6807.49,
+      "turnoverStar": 2586.48,
+      "turnover": 9393.97,
+      "peA": 14.03,
+      "peStar": 118.78,
+      "turnoverRateA": 1.3394,
+      "turnoverRateStar": 2.4178
+    },
+    {
+      "date": "2026-09-07",
+      "turnoverA": 6126.17,
+      "turnoverStar": 2869.72,
+      "turnover": 8995.89,
+      "peA": 13.96,
+      "peStar": 123.51,
+      "turnoverRateA": 1.2104,
+      "turnoverRateStar": 2.6112
+    },
+    {
+      "date": "2026-09-08",
+      "turnoverA": 6585.59,
+      "turnoverStar": 2579.03,
+      "turnover": 9164.62,
+      "peA": 14.02,
+      "peStar": 122.54,
+      "turnoverRateA": 1.2951,
+      "turnoverRateStar": 2.3668
+    },
+    {
+      "date": "2026-09-09",
+      "turnoverA": 6484.58,
+      "turnoverStar": 2263.79,
+      "turnover": 8748.369999999999,
+      "peA": 14.09,
+      "peStar": 120.99,
+      "turnoverRateA": 1.2699,
+      "turnoverRateStar": 2.0891
+    },
+    {
+      "date": "2026-09-10",
+      "turnoverA": 5858.91,
+      "turnoverStar": 1944.36,
+      "turnover": 7803.2699999999995,
+      "peA": 14.05,
+      "peStar": 120.76,
+      "turnoverRateA": 1.1512,
+      "turnoverRateStar": 1.8111
+    },
+    {
+      "date": "2026-09-11",
+      "turnoverA": 6978.17,
+      "turnoverStar": 2619.74,
+      "turnover": 9597.91,
+      "peA": 13.91,
+      "peStar": 119.29,
+      "turnoverRateA": 1.3862,
+      "turnoverRateStar": 2.4782
+    },
+    {
+      "date": "2026-09-14",
+      "turnoverA": 5637.27,
+      "turnoverStar": 2163.31,
+      "turnover": 7800.58,
+      "peA": 13.9,
+      "peStar": 117.6,
+      "turnoverRateA": 1.1207,
+      "turnoverRateStar": 2.0492
+    },
+    {
+      "date": "2026-09-15",
+      "turnoverA": 5389.67,
+      "turnoverStar": 2257.96,
+      "turnover": 7647.63,
+      "peA": 13.79,
+      "peStar": 118.17,
+      "turnoverRateA": 1.0802,
+      "turnoverRateStar": 2.1228
+    },
+    {
+      "date": "2026-09-16",
+      "turnoverA": 5857.15,
+      "turnoverStar": 2861.63,
+      "turnover": 8718.779999999999,
+      "peA": 13.79,
+      "peStar": 121.82,
+      "turnoverRateA": 1.1728,
+      "turnoverRateStar": 2.5958
+    },
+    {
+      "date": "2026-09-17",
+      "turnoverA": 6084.74,
+      "turnoverStar": 2612.95,
+      "turnover": 8697.689999999999,
+      "peA": 13.75,
+      "peStar": 120.42,
+      "turnoverRateA": 1.2231,
+      "turnoverRateStar": 2.3812
+    },
+    {
+      "date": "2026-09-18",
+      "turnoverA": 6499.58,
+      "turnoverStar": 3449.16,
+      "turnover": 9948.74,
+      "peA": 13.85,
+      "peStar": 124.55,
+      "turnoverRateA": 1.3003,
+      "turnoverRateStar": 3.0475
+    },
+    {
+      "date": "2026-09-21",
+      "turnoverA": 6394.23,
+      "turnoverStar": 3082.92,
+      "turnover": 9477.15,
+      "peA": 13.97,
+      "peStar": 125.47,
+      "turnoverRateA": 1.2661,
+      "turnoverRateStar": 2.7062
+    },
+    {
+      "date": "2026-09-22",
+      "turnoverA": 6642.93,
+      "turnoverStar": 3445.64,
+      "turnover": 10088.57,
+      "peA": 13.97,
+      "peStar": 125.97,
+      "turnoverRateA": 1.315,
+      "turnoverRateStar": 3.0137
+    },
+    {
+      "date": "2026-09-23",
+      "turnoverA": 5650.64,
+      "turnoverStar": 2697.61,
+      "turnover": 8348.25,
+      "peA": 13.88,
+      "peStar": 126.71,
+      "turnoverRateA": 1.1251,
+      "turnoverRateStar": 2.3496
+    },
+    {
+      "date": "2026-09-24",
+      "turnoverA": 5385.5,
+      "turnoverStar": 2457.81,
+      "turnover": 7843.3099999999995,
+      "peA": 13.75,
+      "peStar": 122.94,
+      "turnoverRateA": 1.0826,
+      "turnoverRateStar": 2.1972
+    },
+    {
+      "date": "2026-09-28",
+      "turnoverA": 5436.15,
+      "turnoverStar": 2616.4,
+      "turnover": 8052.549999999999,
+      "peA": 13.61,
+      "peStar": 117.56,
+      "turnoverRateA": 1.1049,
+      "turnoverRateStar": 2.4393
+    },
+    {
+      "date": "2026-09-29",
+      "turnoverA": 4556.54,
+      "turnoverStar": 2066.76,
+      "turnover": 6623.3,
+      "peA": 13.61,
+      "peStar": 119.13,
+      "turnoverRateA": 0.9249,
+      "turnoverRateStar": 1.9116
+    },
+    {
+      "date": "2026-09-30",
+      "turnoverA": 4661.18,
+      "turnoverStar": 2137.7,
+      "turnover": 6798.88,
+      "peA": 13.71,
+      "peStar": 117.18,
+      "turnoverRateA": 0.939,
+      "turnoverRateStar": 2.0108
+    },
+    {
+      "date": "2026-10-08",
+      "turnoverA": 5462.95,
+      "turnoverStar": 2655.85,
+      "turnover": 8118.799999999999,
+      "peA": 13.72,
+      "peStar": 110.93,
+      "turnoverRateA": 1.1006,
+      "turnoverRateStar": 2.6144
+    },
+    {
+      "date": "2026-10-09",
+      "turnoverA": 6117.2,
+      "turnoverStar": 2772.46,
+      "turnover": 8889.66,
+      "peA": 13.73,
+      "peStar": 110.87,
+      "turnoverRateA": 1.2303,
+      "turnoverRateStar": 2.7393
+    },
+    {
+      "date": "2026-10-12",
+      "turnoverA": 5122.69,
+      "turnoverStar": 2033.11,
+      "turnover": 7155.799999999999,
+      "peA": 13.73,
+      "peStar": 107.34,
+      "turnoverRateA": 1.0311,
+      "turnoverRateStar": 2.0569
+    },
+    {
+      "date": "2026-10-13",
+      "turnoverA": 5471.02,
+      "turnoverStar": 2331.53,
+      "turnover": 7802.550000000001,
+      "peA": 13.75,
+      "peStar": 106.71,
+      "turnoverRateA": 1.0999,
+      "turnoverRateStar": 2.3622
+    },
+    {
+      "date": "2026-10-14",
+      "turnoverA": 4854.13,
+      "turnoverStar": 1778.02,
+      "turnover": 6632.15,
+      "peA": 13.68,
+      "peStar": 103.76,
+      "turnoverRateA": 0.9808,
+      "turnoverRateStar": 1.8545
+    }
+  ],
+  "csi300": [],
+  "indices": [],
+  "breadth": null,
+  "breadthHistory": [],
+  "exitPressure": null,
+  "coverage": {
+    "SSE": {
+      "status": "verified-snapshot",
+      "date": "2026-10-14",
+      "securityScope": "A-share",
+      "unit": "CNY-100m",
+      "turnover": 6632.15
+    },
+    "SZSE": {
+      "status": "verified-snapshot",
+      "date": "2026-10-14",
+      "securityScope": "A-share",
+      "unit": "CNY-100m",
+      "turnover": 7526.823328197,
+      "reason": "独立核对官网所示2026-10-14与两板块金额；XLSX本身没有内部日期。"
+    },
+    "BSE": {
+      "status": "unavailable",
+      "reason": "no verified same-date A-share turnover"
+    }
+  },
+  "sources": [
+    {
+      "name": "上交所每日股票市场概况：主板A股与科创板",
+      "url": "https://www.sse.com.cn/market/stockdata/overview/day/"
+    },
+    {
+      "name": "深交所市场总貌：主板A股与创业板A股，日期和金额已对照",
+      "url": "https://www.szse.cn/market/overview/index.html"
+    }
+  ],
+  "dataNote": "冻结官方统计摘要，非实时行情。没有第三方报价池、指数或未许可行情。"
+}
