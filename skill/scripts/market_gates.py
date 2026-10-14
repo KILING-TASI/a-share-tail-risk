@@ -44,7 +44,7 @@ def assess(d,target_session):
         for k in ('up','flat','down','total'):real(b[k])
         if any(int(b[k])!=b[k] for k in ('up','flat','down','total')):raise ValueError('breadth counts must be integer')
         if b['total']<=0 or b['up']+b['flat']+b['down']!=b['total']:raise ValueError('breadth denominator mismatch')
-        if b.get('date',asof)!=target_session:reasons.append('breadth date mismatch')
+        if b.get('date')!=target_session:reasons.append('breadth date mismatch')
     gate('singleDayVendorBreadth',reasons)
     history=d.get('breadthHistory',[]);dates(history);reasons=freshness.copy()
     if len(history)<5:reasons.append('fewer than five breadth observations')

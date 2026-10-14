@@ -18,6 +18,7 @@ def main():
   obs=json.loads(Path(a.observations).read_text(encoding='utf-8'))
   if obs['asOf']!=a.session:raise ValueError('observation date mismatch')
   for k in ('expectedSessions','breadthHistory','breadth','exitPressure','exitHistory','breadthScope','exitScope'):data[k]=obs[k]
+ data['priorSnapshotAsOf']=data.get('asOf');data['asOf']=a.session;data['asOfMeaning']='requested report cutoff; individual observation dates remain authoritative'
  combined=out/'combined-market.json';combined.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
  run([ROOT/'tools/render_dashboard.py','--input',combined,'--session',a.session,'--assets',assets,'--output',out/'dashboard.html']);print(out/'dashboard.html')
 if __name__=='__main__':main()
