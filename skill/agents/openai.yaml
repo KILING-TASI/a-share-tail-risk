@@ -1,4 +1,4 @@
 interface:
-  display_name: "A股尾部风险研究"
-  short_description: "分析随机性、极端损失、生存约束与利益绑定，识别A股持仓的脆弱环节"
-  default_prompt: "使用 $a-share-tail-risk 分析我的A股研究或持仓，给出证据、压力情景和风险边界。"
+  display_name: "中国市场与全资产尾部风险研究"
+  short_description: "检查市场证据、全资产负债、现金约束及尾部冲击，保留未知风险"
+  default_prompt: "使用 $a-share-tail-risk 分析我的市场研究或全资产负债，先查原始证据与现金约束，再给压力情景和策略适用边界。"

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 """Declared scenario arithmetic; not an execution or ruin probability model."""
-import argparse,json,math
+import sys,argparse,json,math
 from datetime import date
 from pathlib import Path
 def number(v,name,lo=None,hi=None):
@@ -93,6 +93,7 @@ def review(data):
     if not results:raise ValueError('至少提供一个计算模块')
     return dict(status='declared-scenario-arithmetic',sourceVerified=False,probabilityEstimated=False,basis=data['basis'],results=results,limits=['不取行情、不认证规则或成交','非最大损失、融资强平或破产概率模型','情景权重不是推荐仓位'])
 def main():
+    if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
     ap=argparse.ArgumentParser(description='A股风险声明情景算术');ap.add_argument('--input',required=True);args=ap.parse_args()
     try:
         def reject(v):raise ValueError('禁止非有限JSON常量')

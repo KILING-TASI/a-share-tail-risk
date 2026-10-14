@@ -24,3 +24,10 @@ class Ledger(unittest.TestCase):
   with self.assertRaises(ValueError):self.run_ledger()
  def test_claim_complete_not_certified(self):self.d['inventoryComplete']=True;self.assertFalse(self.run_ledger()['fullNetWorthCertified'])
  def test_no_auto_debt_stress(self):self.d['liabilities'][0]['reportingValue']=200000;self.assertEqual(self.run_ledger()['knownLiabilityValue'],200000)
+
+ def test_duplicate_liability(self):
+  self.d['liabilities']*=2
+  with self.assertRaises(ValueError):self.run_ledger()
+ def test_overflow_scenario(self):
+  self.d['assets']=[{'id':'a','reportingValue':1e308},{'id':'b','reportingValue':1}];self.d['scenarios']=[{'name':'overflow','shocksPct':{'a':70,'b':1e308}}]
+  with self.assertRaises(ValueError):self.run_ledger()

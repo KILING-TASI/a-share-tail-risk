@@ -1,15 +1,19 @@
 """Dataset scope and refusal gates. Metadata is declared, not authenticated."""
 from datetime import date
-import math
+import math,re
 def real(v,minimum=0):
     if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<minimum:raise ValueError('invalid finite numeric value')
     return v
+def session_date(v):
+    if not isinstance(v,str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',v):raise ValueError('dates must be YYYY-MM-DD')
+    return date.fromisoformat(v)
+
 def dates(rows):
-    parsed=[date.fromisoformat(r['date']) for r in rows]
+    parsed=[session_date(r['date']) for r in rows]
     if any(a>=b for a,b in zip(parsed,parsed[1:])):raise ValueError('duplicate or unordered dates')
     return parsed
 def assess(d,target_session):
-    target=date.fromisoformat(target_session);out={}
+    target=session_date(target_session);out={}
     def gate(key,reasons):out[key]={'status':'refused' if reasons else 'conditional','reasons':reasons}
     asof=d.get('asOf');fresh=asof==target.isoformat()
     freshness=[] if fresh else ['snapshot date differs from selected completed trading session']

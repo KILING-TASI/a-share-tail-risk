@@ -16,7 +16,8 @@ def analyze(d):
  for r in rows:
   if r.get('reportingValue') is None:unknown.append(r['id'])
   else:known+=number(r['reportingValue'])
- debt=0;unknown_debt=[]
+ debt=0;unknown_debt=[];liability_ids=[r['id'] for r in d.get('liabilities',[])]
+ if any(not isinstance(i,str) or not i for i in liability_ids) or len(set(liability_ids))!=len(liability_ids):raise ValueError('liability identities must be unique')
  for r in d.get('liabilities',[]):
   if r.get('reportingValue') is None:unknown_debt.append(r['id'])
   else:debt+=number(r['reportingValue'])
@@ -30,6 +31,7 @@ def analyze(d):
    result=v*(1+shock/100)
    if not math.isfinite(result):raise ValueError('scenario amount overflow')
    total+=result;values.append({'id':r['id'],'scenarioValue':result})
+  if not math.isfinite(total):raise ValueError('scenario total overflow')
   scenarios.append({'name':s['name'],'coveredScenarioAssetValue':total,'missingAssets':missing,'completeDeclaredAssetScenario':not missing,'positions':values,'limits':'asset value only; debts, FX and cash availability are not automatically stressed'})
  cash=d.get('availableCash');need=d.get('requiredOutflow');headroom=None if cash is None or need is None else number(cash)-number(need)
  if not all(math.isfinite(x) for x in [known,debt]):raise ValueError('ledger total overflow')
