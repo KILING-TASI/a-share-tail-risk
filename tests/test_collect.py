@@ -32,3 +32,6 @@ class Collect(unittest.TestCase):
   old={'records':[{'id':'a','value':1,'date':'2026-10-13','unit':'USD','currency':'USD'}]};new={'targetSession':'2026-10-14','records':[{'id':'a','value':2,'date':'2026-10-14','unit':'CNY','currency':'CNY','status':'available'}]};self.assertNotIn('history',c.merge_previous(new,old)['records'][0])
  def test_url_injection_symbol(self):
   with self.assertRaises(ValueError):c.collect({'securities':[{'symbol':'sh600000&x=1','assetClass':'股票'}]},'2026-10-14',lambda *a:b'')
+
+ def test_boolean_quote_value(self):
+  with self.assertRaises(ValueError):c.value(True)

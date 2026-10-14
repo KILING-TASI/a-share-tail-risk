@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 TRANSPORT_NOTES=[]
 
 def value(v):
+ if isinstance(v,bool) or v is None:raise ValueError('boolean or missing number')
  x=float(v)
  if not math.isfinite(x):raise ValueError('non-finite value')
  return x
