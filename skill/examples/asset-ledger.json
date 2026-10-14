@@ -1,0 +1,47 @@
+{
+  "asOf": "2026-10-14",
+  "reportingCurrency": "CNY",
+  "inventoryComplete": false,
+  "synthetic": true,
+  "assets": [
+    {
+      "id": "cash",
+      "kind": "cash",
+      "reportingValue": 50000
+    },
+    {
+      "id": "bond",
+      "kind": "bond",
+      "reportingValue": 100000
+    },
+    {
+      "id": "equity",
+      "kind": "equity",
+      "reportingValue": 100000
+    },
+    {
+      "id": "property",
+      "kind": "property",
+      "reportingValue": null
+    }
+  ],
+  "liabilities": [
+    {
+      "id": "mortgage",
+      "reportingValue": null
+    }
+  ],
+  "availableCash": 50000,
+  "requiredOutflow": 80000,
+  "scenarios": [
+    {
+      "name": "人工共同冲击示例，非预测",
+      "shocksPct": {
+        "cash": 0,
+        "bond": -5,
+        "equity": -30,
+        "property": -20
+      }
+    }
+  ]
+}

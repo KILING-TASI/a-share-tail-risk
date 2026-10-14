@@ -1,6 +1,6 @@
 # A股尾部风险研究
 
-用市场数据和持仓情景，识别不能承受的损失、退出约束与证据缺口。研究框架参考塔勒布《随机漫步的傻瓜》《黑天鹅》《反脆弱》《非对称风险》，以中国A股制度组织原创分析。
+用市场数据和持仓情景，识别不能承受的损失、退出约束与证据缺口。范围包括家庭和企业的现金、存款、债券、理财、房地产、黄金、外汇、经营资产及负债。研究框架参考塔勒布《随机漫步的傻瓜》《黑天鹅》《反脆弱》《非对称风险》，以中国A股制度组织原创分析。
 
 [打开市场观察看板](https://kiling-tasi.github.io/a-share-tail-risk/) · [查看 Skill](skill/SKILL.md) · [数据接入说明](DATA.md) · [数据源分工](SOURCES.md)
 
@@ -21,10 +21,13 @@
 基本分析只需能读取 Skill 的助手。复算脚本需 Python 3.10 或以上，不需要第三方依赖：
 
 ```sh
-python skill/scripts/risk_math.py --help
+python skill/scripts/risk_math.py --input skill/examples/scenario.json
+python skill/scripts/asset_ledger.py --input skill/examples/asset-ledger.json
 ```
 
 ## 市场看板
+
+看板还支持本地全资产清单与现金压力复算，并列出杠铃、有限成本选择权、可逆试错等安排的适用边界。
 
 公开页面附2026-10-14冻结的官方成交和估值统计摘要，明确停止全A综合判断；不是实时页面，不附数据商行情。加载自己有权使用的 JSON 后，本地展示覆盖、连续广度、上海成交历史和退出压力。文件不上传。请核对目标日期确为已完成交易日。`examples/synthetic-contract.json` 是人工测试数据，不能用于市场判断。
 
