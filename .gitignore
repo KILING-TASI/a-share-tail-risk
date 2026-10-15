@@ -4,3 +4,6 @@ local-snapshots/
 *.raw
 *.xlsx
 *.zip
+
+*.sources/
+outputs/

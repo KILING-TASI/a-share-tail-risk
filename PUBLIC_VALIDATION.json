@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "public-validation/1",
+  "repository": "a-share-tail-risk",
+  "registeredOn": "2026-10-15",
+  "hashFormat": "UTF-8 with LF newlines; BOM ignored; original response hashes remain in original receipts",
+  "coverage": "limited-public-inputs",
+  "sourceAuthenticityCertified": false,
+  "evidence": [
+    {
+      "path": "examples/research-20261014.json",
+      "kind": "public-derived-summary",
+      "normalizedSha256": "3ac428ec38b335b044463d553b7779eef8af9ee5603a7bd9a01d3fb695adb979",
+      "sourceUrls": [
+        "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600000,day,,,750,qfq",
+        "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh510300,day,,,750,qfq",
+        "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh511010,day,,,750,qfq",
+        "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh518880,day,,,750,qfq"
+      ]
+    }
+  ],
+  "checkFiles": [
+    "test_pipeline.py"
+  ],
+  "gaps": [
+    "完整全A连续广度、退出状态与发行人财务未齐",
+    "固定资产样本不是完整全市场"
+  ],
+  "limits": "registry and selected counterexamples; no new original-document authentication or investment-effect certification"
+}

@@ -188,10 +188,15 @@ def merge_previous(current,previous):
 
 def main():
  if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
- ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--session',required=True);ap.add_argument('--output',required=True);ap.add_argument('--previous');a=ap.parse_args();out=Path(a.output)
+ ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--session',required=True);ap.add_argument('--output',required=True);ap.add_argument('--previous');ap.add_argument('--replay-archive');a=ap.parse_args();out=Path(a.output)
  if out.exists():ap.exit(2,'禁止覆盖冻结快照，请使用新文件名。\n')
  print('开始自动核验所选资产、官方黄金、利率和汇率。失败保留原因。',flush=True)
- data=collect(json.loads(Path(a.manifest).read_text(encoding='utf-8')),a.session,progress=lambda text:print(text,flush=True))
+ from response_archive import ResponseArchive
+ archive=ResponseArchive(a.replay_archive or str(out)+'.sources',transport=fetch,replay=bool(a.replay_archive))
+ data=collect(json.loads(Path(a.manifest).read_text(encoding='utf-8')),a.session,transport=archive,progress=lambda text:print(text,flush=True))
+ data['sourceArchive']={'schemaVersion':'research-response-archive/1','directory':str(archive.path),'offlineReplay':bool(a.replay_archive)}
+ data['retrievedAt']=archive.finish()
+ if a.replay_archive:data['replayedAt']=datetime.now(timezone.utc).isoformat()
  if a.previous:data=merge_previous(data,json.loads(Path(a.previous).read_text(encoding='utf-8')))
  out.parent.mkdir(parents=True,exist_ok=True);
  with out.open('x',encoding='utf-8') as f:f.write(json.dumps(data,ensure_ascii=False,indent=2,allow_nan=False))

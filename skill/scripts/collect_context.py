@@ -14,17 +14,15 @@ INDICATORS={
  'FM.LBL.BMNY.GD.ZS':('广义货币占GDP','percent-GDP')}
 
 def parse_worldbank(raw,indicator,regions,start,end,url,retrieved):
- payload=json.loads(raw)
- if not isinstance(payload,list) or len(payload)!=2 or not isinstance(payload[1],list):raise ValueError('World Bank response is not observations')
- if payload[0].get('pages')!=1:raise ValueError('pagination incomplete; request smaller range')
+ from wdi_core import parse
+ meta,rows=parse(raw,dict(countries=regions,indicator=indicator,start=start,end=end),1)
+ if meta['pages']!=1 or len(rows)!=int(meta['total']):raise ValueError('context request requires complete single page')
  records=[];missing=0
- for r in payload[1]:
-  region=r['countryiso3code'];year=int(r['date'])
-  if region not in regions or r['indicator']['id']!=indicator or not start<=year<=end:raise ValueError('response identity/range mismatch')
+ for r in rows:
   if r['value'] is None:missing+=1;continue
-  v=r['value']
-  if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v):raise ValueError('invalid macro value')
-  records.append({'entityId':region,'metric':indicator,'name':INDICATORS[indicator][0],'sourceMetricName':r['indicator']['value'],'region':region,'frequency':'annual','period':str(year),'value':v,'unit':INDICATORS[indicator][1],'currency':None,'basis':'World Bank WDI latest revised version; not historical release vintage','sourceUrl':url,'source':'World Bank WDI','sourceUpdateDate':payload[0].get('lastupdated'),'retrievedAt':retrieved,'availableAt':None,'version':payload[0].get('lastupdated'),'observationStatus':r.get('obs_status','')})
+  v=float(r['value'])
+  if not math.isfinite(v):raise ValueError('macro numeric overflow')
+  records.append({'entityId':r['regionCode'],'metric':indicator,'name':INDICATORS[indicator][0],'sourceMetricName':r['indicatorName'],'region':r['regionCode'],'frequency':'annual','period':r['period'],'value':v,'sourceDecimalText':r['value'],'unit':INDICATORS[indicator][1],'currency':None,'basis':'World Bank WDI latest revised version; not historical release vintage','sourceUrl':url,'source':'World Bank WDI','sourceUpdateDate':meta.get('lastupdated'),'retrievedAt':retrieved,'availableAt':None,'version':meta.get('lastupdated'),'footnote':r['footnote']})
  return records,missing
 
 def collect(config,cutoff,transport=fetch,progress=None):
@@ -53,9 +51,16 @@ def collect(config,cutoff,transport=fetch,progress=None):
  return {'schemaVersion':'context-v1','asOf':cutoff,'retrievedAt':retrieved,'requestedStartYear':start,'requestedEndYear':end,'regions':regions,'records':clean['records'],'conflicts':clean['conflicts'],'coverage':coverage,'events':events,'limits':'annual macro context, mixed release lag and revisions; no daily market state, causal proof, micro issuer coverage or point-in-time availability certification'}
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--manifest',required=True);p.add_argument('--session',required=True);p.add_argument('--output',required=True);a=p.parse_args();out=Path(a.output)
+ p=argparse.ArgumentParser();p.add_argument('--manifest',required=True);p.add_argument('--session',required=True);p.add_argument('--output',required=True);p.add_argument('--replay-archive');a=p.parse_args();out=Path(a.output)
  if out.exists():p.exit(2,'禁止覆盖冻结结果，请使用新文件名。\n')
- d=collect(json.loads(Path(a.manifest).read_text(encoding='utf-8')),a.session,progress=lambda s:print(s,flush=True));out.parent.mkdir(parents=True,exist_ok=True)
+ from response_archive import ResponseArchive
+ archive=ResponseArchive(a.replay_archive or str(out)+'.sources',transport=fetch,replay=bool(a.replay_archive))
+ d=collect(json.loads(Path(a.manifest).read_text(encoding='utf-8')),a.session,transport=archive,progress=lambda text:print(text,flush=True))
+ d['sourceArchive']={'schemaVersion':'research-response-archive/1','directory':str(archive.path),'offlineReplay':bool(a.replay_archive)}
+ d['retrievedAt']=archive.finish()
+ if a.replay_archive:d['replayedAt']=datetime.now(timezone.utc).isoformat()
+ for row in d['records']:row['retrievedAt']=d['retrievedAt']
+ out.parent.mkdir(parents=True,exist_ok=True)
  with out.open('x',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,allow_nan=False,indent=2)
  print('完成：'+str(len(d['records']))+'条年度观察；'+str(sum(c['status']=='available' for c in d['coverage']))+'/'+str(len(d['coverage']))+'地区指标组合有数据。')
 if __name__=='__main__':main()

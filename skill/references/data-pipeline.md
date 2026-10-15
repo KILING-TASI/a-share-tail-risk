@@ -51,3 +51,14 @@ python scripts/risk_lab.py --input examples/protection-input.json
 现金流按月末核算收入中断、必要开支、债务本息和延后卖出净到账；后期到账不抹去先前缺口，不覆盖月中路径。fragility将账户权益、债务、担保估值折扣、合同维护倍数和账户外现金分开；追保是额外现金占用，不重复记作价格损失；没有真实融资清算路径，不推算强平价。barbell检查储备减值、不可用部分、风险端声明损失上限与成本预算；上限未核验则预算余量未知。protection计权利金、续持、交易费用、现金机会成本和情景损耗，比较无回款与声明冲击；不算期望收益，不为卖方义务定价。
 
 报告支持前一期研究摘要对照（--previous-research），前一期必须早于本期；没有之前版本不制造历史判断。浏览器可导出研究摘要或单独导出个人情景；二者分开，参数修改后原计算立即失效。
+
+## 固定组件、原始响应与离线重放
+
+匹配器、WDI解析及响应归档权威实现归cn-data-adapters；当前Skill携带经登记的固定副本，无跨仓运行依赖。采集CLI会在输出文件旁生成`.sources`新目录，保存原始响应、失败和SHA256。目录属于本地研究资料，不随公开安装包发布。
+
+```sh
+python scripts/collect_context.py --manifest examples/context-manifest.json --session 2026-10-14 --output outputs/context-new.json
+python scripts/collect_context.py --manifest examples/context-manifest.json --session 2026-10-14 --replay-archive outputs/context-new.json.sources --output outputs/context-replay.json
+```
+
+collect_assets.py支持同样的--replay-archive。重放不联网，不以新时间覆盖原取得时间，单列replayedAt；修改响应、缺文件或无请求记录时拒绝/保留失败。archive完成只表示捕获流程结束，不代表每个来源成功。数据仓可选tail-risk-import将结果转为cn-research-observations/1.0；未安装数据仓仍能独立研究和生成看板。

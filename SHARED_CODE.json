@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "fixed-shared-components/1",
+  "hashFormat": "UTF-8 with LF newlines; BOM ignored",
+  "components": [
+    {
+      "localPath": "skill/scripts/data_matcher.py",
+      "normalizedTextSha256": "b149a3a53fbf1adc6e773853bec08acd8a7f411fcb62c507f122aef2615a11b6",
+      "canonicalRepository": "cn-data-adapters",
+      "canonicalPath": "cn_data_adapters/matching.py",
+      "syncPolicy": "fixed-with-distribution; review and regenerate manifest before replacing; no runtime source dependency",
+      "licenseScope": "original MIT; source data retain their own rights"
+    },
+    {
+      "localPath": "skill/scripts/wdi_core.py",
+      "normalizedTextSha256": "c911843f0b621950b88c2a3f78513545224d43f921e0ba06f790e175e27ec9c6",
+      "canonicalRepository": "cn-data-adapters",
+      "canonicalPath": "cn_data_adapters/wdi_core.py",
+      "syncPolicy": "fixed-with-distribution; review and regenerate manifest before replacing; no runtime source dependency",
+      "licenseScope": "original MIT; source data retain their own rights"
+    },
+    {
+      "localPath": "skill/scripts/response_archive.py",
+      "normalizedTextSha256": "c9a3aba38447b1c68dc18a0d5c3ab9e34da21ee9151424d5f41d3fe8b12f7cd7",
+      "canonicalRepository": "cn-data-adapters",
+      "canonicalPath": "cn_data_adapters/response_archive.py",
+      "syncPolicy": "fixed-with-distribution; review and regenerate manifest before replacing; no runtime source dependency",
+      "licenseScope": "original MIT; source data retain their own rights"
+    },
+    {
+      "localPath": "tools/verify_public_validation.py",
+      "normalizedTextSha256": "70fd731cb66bc999d5f16b45ef410f1d92993e9cdbc424e8616b6c49da08c799",
+      "canonicalRepository": "cn-data-adapters",
+      "canonicalPath": "tools/verify_public_validation.py",
+      "syncPolicy": "fixed-with-distribution; no runtime dependency on sibling repositories",
+      "licenseScope": "original MIT; public data and references retain their own rights"
+    }
+  ]
+}

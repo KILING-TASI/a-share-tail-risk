@@ -68,3 +68,7 @@ node tests/advanced-ui.cjs
 Python 3.10+；浏览器需支持本地文件读取、SVG 和现代 JavaScript。离线页面无外部脚本依赖。自动测试核验计算和数据门槛，不能替代真实来源核验、完整盘口成交模拟或许可审核。
 
 原创代码 MIT。第三方文本、行情、公告与书籍保持各自权利范围；链接不代表可转载。没有合法授权的数据不纳入公开包。详见 [许可边界](THIRD_PARTY_NOTICES.md)。
+
+## 公开底稿验收
+
+[覆盖登记](PUBLIC_VALIDATION.json)区分公开事实、混合教学与尚缺样本。运行 `python tools/verify_public_validation.py --run-checks --output reports/public-validation-v1.json` 可核对冻结文本与已登记反例；重复运行使用新文件。通过不表示重新认证原文或真实市场效果，未取得的样本仍列为缺口。

@@ -26,7 +26,7 @@ class Matcher(unittest.TestCase):
  def test_cross_region_same_metric(self):b=dict(self.a,region='USA',entityId='USA');self.assertEqual(match(self.a,b,'cross-region')['status'],'conditional-match')
 
 class Collection(unittest.TestCase):
- def fixture(self,value=2):return json.dumps([{'pages':1,'lastupdated':'2026-10-08'},[{'countryiso3code':'CHN','date':'2025','value':value,'indicator':{'id':'NY.GDP.MKTP.KD.ZG','value':'GDP growth'},'obs_status':''}]]).encode()
+ def fixture(self,value=2):return json.dumps([{'page':1,'pages':1,'total':1,'lastupdated':'2026-10-08'},[{'countryiso3code':'CHN','date':'2025','value':value,'indicator':{'id':'NY.GDP.MKTP.KD.ZG','value':'GDP growth'},'obs_status':''}]]).encode()
  def test_null_not_zero(self):r,n=parse_worldbank(self.fixture(None),'NY.GDP.MKTP.KD.ZG',['CHN'],2010,2025,'https://example.com','now');self.assertEqual(r,[]);self.assertEqual(n,1)
  def test_latest_revision_not_release_timestamp(self):r,n=parse_worldbank(self.fixture(),'NY.GDP.MKTP.KD.ZG',['CHN'],2010,2025,'https://example.com','now');self.assertIsNone(r[0]['availableAt'])
  def test_wrong_region_rejected(self):self.assertRaises(ValueError,parse_worldbank,self.fixture(),'NY.GDP.MKTP.KD.ZG',['USA'],2010,2025,'https://example.com','now')

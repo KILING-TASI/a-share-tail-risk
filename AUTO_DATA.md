@@ -60,3 +60,5 @@ CSV列：`date,code,close,prevClose,volume,status,limitDown`。status仅接受tr
 ## 扩展采集与匹配
 
 现默认清单43项，证券/基金请求750记录点；汇率从2016年起，Shibor长区间无值会尝试短窗口并记录实际范围。多国宏观运行 `python skill/scripts/collect_context.py --manifest skill/examples/context-manifest.json --session 2026-10-14 --output local-snapshots/context-v1.json`（单独Skill移除路径前缀skill/）。完整联动命令已包含宏观采集。细节见 [采集匹配契约](skill/references/data-pipeline.md)。
+
+采集CLI现自动生成本地`.sources`响应归档，可用`--replay-archive`离线复核；匹配、WDI解析和归档组件由数据仓维护、Skill携带固定副本，单独运行无需其他仓库。说明见[采集匹配契约](skill/references/data-pipeline.md)。
