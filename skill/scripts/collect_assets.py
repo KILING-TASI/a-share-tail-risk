@@ -159,8 +159,9 @@ def collect(manifest,cutoff,transport=fetch,progress=None):
  for r in records:
   r['freshness']='same-date' if r.get('date')==cutoff else ('older-observation' if r.get('date') else 'unknown')
   r['frequency']='daily';r['actualHistoryStart']=r.get('history',[{}])[0].get('date') if r.get('history') else None;r['actualHistoryEnd']=r.get('history',[{}])[-1].get('date') if r.get('history') else None
-  r['requestedStartDate']=history_start;r['requestedHistoryRecords']=history_limit
-  r['historyShortfall']=len(r.get('history',[]))<history_limit
+  mode='records' if r.get('kind') in ('quote','nav') else ('date-range' if r.get('assetClass') in ('外汇参考汇率','货币市场利率') else 'snapshot')
+  r['historyRequestMode']=mode;r['requestedStartDate']=history_start if mode=='date-range' else None;r['requestedHistoryRecords']=history_limit if mode=='records' else None
+  r['historyShortfall']=len(r.get('history',[]))<history_limit if mode=='records' else (True if r.get('assetClass')=='货币市场利率' and any(e['source']=='中国货币网短窗口回退' for e in events) else None)
   r['availableAt']=None;r['availabilityNote']='retrieved latest source version; historical publication timestamp unverified'
  return {'schemaVersion':'assets-v1','targetSession':cutoff,'retrievedAt':datetime.now(timezone.utc).isoformat(),'records':records,'events':events,'scope':'selected instruments and reference series, not entire market or personal assets','transportNotes':list(TRANSPORT_NOTES),'manualClasses':['存款合同利率','理财产品兑付和赎回条款','房地产与非上市股权估值','个人债务、担保与经营现金流']}
 
@@ -180,6 +181,9 @@ def merge_previous(current,previous):
    points.update({x['date']:x for x in r.get('history',[])})
    if r.get('date'):points[r['date']]={'date':r['date'],'value':r['value']}
    r['history']=sorted(points.values(),key=lambda x:x['date'])[-252:]
+ for r in current['records']:
+  h=r.get('history',[])
+  r['actualHistoryStart']=h[0]['date'] if h else r.get('date');r['actualHistoryEnd']=h[-1]['date'] if h else r.get('date')
  return current
 
 def main():
