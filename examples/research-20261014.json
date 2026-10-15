@@ -1,0 +1,711 @@
+{
+  "asOf": "2026-10-14",
+  "retrievedAt": "2026-10-15T03:34:57.195235+00:00",
+  "title": "所选股指多数走弱，先检查共同暴露",
+  "indexSample": 5,
+  "negativeIndices": 5,
+  "windows": {
+    "5": {
+      "start": "2026-09-30",
+      "end": "2026-10-14"
+    },
+    "20": {
+      "start": "2026-09-08",
+      "end": "2026-10-14"
+    },
+    "60": {
+      "start": "2026-07-14",
+      "end": "2026-10-14"
+    }
+  },
+  "windowStart": "2026-09-08",
+  "windowEnd": "2026-10-14",
+  "rows": [
+    {
+      "id": "sh600000",
+      "name": "浦发银行",
+      "assetClass": "股票",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh600000,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.01793248945147674,
+        "20": 0.0398706896551726,
+        "60": 0.1041189931350115
+      },
+      "drawdown60": -0.07621009268795054,
+      "level": null,
+      "unit": "元/股"
+    },
+    {
+      "id": "sh510300",
+      "name": "沪深300ETF",
+      "assetClass": "股票ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh510300,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.031137184115523686,
+        "20": -0.07136678200692048,
+        "60": -0.11225966508166219
+      },
+      "drawdown60": -0.11244315832988849,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh511010",
+      "name": "国债ETF",
+      "assetClass": "债券ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh511010,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.0010160940775214566,
+        "20": 0.002048509851340752,
+        "60": 0.004993650929532301
+      },
+      "drawdown60": -0.0013505636826317557,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh518880",
+      "name": "黄金ETF",
+      "assetClass": "黄金ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh518880,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.015290165643461084,
+        "20": -0.06035149773405557,
+        "60": 0.015287232772005277
+      },
+      "drawdown60": -0.1139690506064408,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh508000",
+      "name": "张江REIT",
+      "assetClass": "公募REITs",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh508000,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.01661474558670817,
+        "20": 0.04814609850581064,
+        "60": -0.07338551859099807
+      },
+      "drawdown60": -0.1844422700587084,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh000001",
+      "name": "上证指数",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000001,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.01950970670372887,
+        "20": -0.04398370785804018,
+        "60": -0.050389072200810126
+      },
+      "drawdown60": -0.05590306493246122,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sz399006",
+      "name": "创业板指",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz399006,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.08564466331555709,
+        "20": -0.14672651292369587,
+        "60": -0.2556074305270646
+      },
+      "drawdown60": -0.2556074305270646,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh000300",
+      "name": "沪深300",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000300,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.032113860318247034,
+        "20": -0.07481453208562006,
+        "60": -0.12067549254664856
+      },
+      "drawdown60": -0.12067549254664856,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh000016",
+      "name": "上证50",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000016,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.01642061715451537,
+        "20": -0.0453382838283829,
+        "60": -0.06043883541134476
+      },
+      "drawdown60": -0.07159024422861537,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh000905",
+      "name": "中证500",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000905,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.06120244890493276,
+        "20": -0.10174333685509596,
+        "60": -0.1565779838906518
+      },
+      "drawdown60": -0.1565779838906518,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh000852",
+      "name": "中证1000",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000852,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.053933375531935224,
+        "20": -0.0984958764219066,
+        "60": -0.1286983667124283
+      },
+      "drawdown60": -0.13342862664682154,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh000688",
+      "name": "科创50",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000688,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.09787517728642292,
+        "20": -0.13245757385292267,
+        "60": -0.31321122737880214
+      },
+      "drawdown60": -0.31321122737880214,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sz399001",
+      "name": "深证成指",
+      "assetClass": "股票指数",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz399001,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.06029274606172441,
+        "20": -0.11622240336388323,
+        "60": -0.188563116462656
+      },
+      "drawdown60": -0.188563116462656,
+      "level": null,
+      "unit": "点"
+    },
+    {
+      "id": "sh510050",
+      "name": "上证50ETF",
+      "assetClass": "宽基ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh510050,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.015656909462219315,
+        "20": -0.0414318859794498,
+        "60": -0.05428384565075206
+      },
+      "drawdown60": -0.06286454957874266,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh510500",
+      "name": "中证500ETF",
+      "assetClass": "宽基ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh510500,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.05982334047109206,
+        "20": -0.09797123780174621,
+        "60": -0.14992739593417226
+      },
+      "drawdown60": -0.14992739593417226,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512100",
+      "name": "中证1000ETF",
+      "assetClass": "宽基ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512100,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.05419050824638172,
+        "20": -0.09529942047649709,
+        "60": -0.12351840299438555
+      },
+      "drawdown60": -0.12868217054263564,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh588000",
+      "name": "科创50ETF",
+      "assetClass": "宽基ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh588000,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.09777227722772286,
+        "20": -0.13265913146936348,
+        "60": -0.3138823529411765
+      },
+      "drawdown60": -0.3138823529411765,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sz159915",
+      "name": "创业板ETF",
+      "assetClass": "宽基ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz159915,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.08338617628408362,
+        "20": -0.14366113744075826,
+        "60": -0.2523920351693819
+      },
+      "drawdown60": -0.2523920351693819,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512800",
+      "name": "银行ETF",
+      "assetClass": "银行ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512800,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.014067995310668158,
+        "20": 0.030989272943980906,
+        "60": 0.1075544174135723
+      },
+      "drawdown60": -0.052380952380952306,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512880",
+      "name": "证券ETF",
+      "assetClass": "证券ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512880,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.004859086491739717,
+        "20": -0.047004608294930805,
+        "60": -0.06340579710144933
+      },
+      "drawdown60": -0.10619469026548667,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512660",
+      "name": "军工ETF",
+      "assetClass": "军工ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512660,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.024523160762942697,
+        "20": -0.07573149741824425,
+        "60": -0.07253886010362687
+      },
+      "drawdown60": -0.1033898305084745,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512480",
+      "name": "半导体ETF",
+      "assetClass": "半导体ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512480,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.10157068062827224,
+        "20": -0.13157894736842102,
+        "60": -0.34403669724770647
+      },
+      "drawdown60": -0.34403669724770647,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512170",
+      "name": "医疗ETF",
+      "assetClass": "医疗ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512170,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.04871060171919761,
+        "20": -0.02639296187683282,
+        "60": 0.040752351097178785
+      },
+      "drawdown60": -0.08913649025069625,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh515790",
+      "name": "光伏ETF",
+      "assetClass": "光伏ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh515790,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.0489690721649485,
+        "20": -0.09890109890109888,
+        "60": -0.13583138173302112
+      },
+      "drawdown60": -0.17078651685393265,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh512690",
+      "name": "酒类ETF",
+      "assetClass": "酒类ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh512690,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.007194244604316502,
+        "20": -0.04166666666666674,
+        "60": 0.045454545454545414
+      },
+      "drawdown60": -0.10596026490066224,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh513100",
+      "name": "纳指ETF",
+      "assetClass": "海外股票ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh513100,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.01998299319727903,
+        "20": 0.07433945364979855,
+        "60": 0.10552995391705067
+      },
+      "drawdown60": -0.06718464351005493,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh513500",
+      "name": "标普500ETF",
+      "assetClass": "海外股票ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh513500,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.019345238095238138,
+        "20": 0.022006713912719134,
+        "60": 0.07874015748031504
+      },
+      "drawdown60": -0.049676025917926525,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh511260",
+      "name": "十年国债ETF",
+      "assetClass": "债券ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh511260,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": 0.002462834930714086,
+        "20": 0.0038702967722763493,
+        "60": 0.011360744809830958
+      },
+      "drawdown60": -0.001991143867574041,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "sh511880",
+      "name": "货币ETF",
+      "assetClass": "货币ETF",
+      "date": "2026-10-14",
+      "source": "腾讯历史收盘",
+      "sourceUrl": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh511880,day,,,120,qfq",
+      "basis": "本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性",
+      "changes": {
+        "5": -0.00012883915917571986,
+        "20": 0.001121309848672869,
+        "60": 0.0027531780819194385
+      },
+      "drawdown60": -0.0003963535473643365,
+      "level": null,
+      "unit": "元/份"
+    },
+    {
+      "id": "000001",
+      "name": "华夏成长混合",
+      "assetClass": "公募基金",
+      "date": "2026-10-14",
+      "source": "天天基金",
+      "sourceUrl": "https://fund.eastmoney.com/pingzhongdata/000001.js",
+      "basis": "二手披露净值，需回查管理人；非盘中估算，非含分红总收益",
+      "changes": {
+        "5": -0.07855973813420625,
+        "20": -0.11338582677165365,
+        "60": -0.25430463576158946
+      },
+      "drawdown60": -0.25430463576158946,
+      "level": null,
+      "unit": "单位净值"
+    },
+    {
+      "id": "110011",
+      "name": "易方达优质精选混合(QDII)",
+      "assetClass": "公募基金",
+      "date": "2026-10-14",
+      "source": "天天基金",
+      "sourceUrl": "https://fund.eastmoney.com/pingzhongdata/110011.js",
+      "basis": "二手披露净值，需回查管理人；非盘中估算，非含分红总收益",
+      "changes": {
+        "5": 0.00019973036400866562,
+        "20": -0.03357938920248971,
+        "60": -0.0074327337594768395
+      },
+      "drawdown60": -0.07125924187301969,
+      "level": null,
+      "unit": "单位净值"
+    },
+    {
+      "id": "161725",
+      "name": "招商中证白酒指数(LOF)A",
+      "assetClass": "公募基金",
+      "date": "2026-10-14",
+      "source": "天天基金",
+      "sourceUrl": "https://fund.eastmoney.com/pingzhongdata/161725.js",
+      "basis": "二手披露净值，需回查管理人；非盘中估算，非含分红总收益",
+      "changes": {
+        "5": -0.008468197214903883,
+        "20": -0.061954780131742826,
+        "60": 0.0307120500782474
+      },
+      "drawdown60": -0.11752647762213886,
+      "level": null,
+      "unit": "单位净值"
+    },
+    {
+      "id": "SGE-Au9999",
+      "name": "上金所Au99.99",
+      "assetClass": "黄金现货合约",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.sge.com.cn/sjzx/quotation_daily_new?start_date=2026-10-14&end_date=2026-10-14",
+      "basis": "指定合约收盘，不等于金饰零售价格",
+      "changes": {
+        "5": null,
+        "20": null,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 894.5,
+      "unit": "元/克"
+    },
+    {
+      "id": "EUR/CNY",
+      "name": "EUR/CNY",
+      "assetClass": "外汇参考汇率",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "basis": "ECB参考汇率及同日交叉换算，非国内银行成交价",
+      "changes": {
+        "5": -0.015828188624721018,
+        "20": -0.03863426401149661,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 7.4925,
+      "unit": "人民币/1单位外币"
+    },
+    {
+      "id": "USD/CNY",
+      "name": "USD/CNY",
+      "assetClass": "外汇参考汇率",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "basis": "ECB参考汇率及同日交叉换算，非国内银行成交价",
+      "changes": {
+        "5": -0.0017623119101122242,
+        "20": -0.0026528219945977094,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 6.692719964269763,
+      "unit": "人民币/1单位外币"
+    },
+    {
+      "id": "JPY/CNY",
+      "name": "JPY/CNY",
+      "assetClass": "外汇参考汇率",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "basis": "ECB参考汇率及同日交叉换算，非国内银行成交价",
+      "changes": {
+        "5": -0.010945888641574975,
+        "20": -0.028824962573201218,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 0.042237442922374434,
+      "unit": "人民币/1单位外币"
+    },
+    {
+      "id": "GBP/CNY",
+      "name": "GBP/CNY",
+      "assetClass": "外汇参考汇率",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "basis": "ECB参考汇率及同日交叉换算，非国内银行成交价",
+      "changes": {
+        "5": -0.0032556080397526665,
+        "20": -0.02319727198371402,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 8.87894768027493,
+      "unit": "人民币/1单位外币"
+    },
+    {
+      "id": "SHIBOR-ON",
+      "name": "Shibor隔夜",
+      "assetClass": "货币市场利率",
+      "date": "2026-10-14",
+      "source": "primary",
+      "sourceUrl": "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?startDate=2026-06-16&endDate=2026-10-14",
+      "basis": "银行间拆借参考利率，不是个人存款利率",
+      "changes": {
+        "5": null,
+        "20": null,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 1.269,
+      "unit": "%"
+    },
+    {
+      "id": "CGB-10Y",
+      "name": "中债国债10年",
+      "assetClass": "国债收益率",
+      "date": "2026-10-13",
+      "source": "primary",
+      "sourceUrl": "https://yield.chinabond.com.cn/cbweb-pbc-web/pbc/pbcInit?locale=zh_CN",
+      "basis": "接口worktime原样保留；曲线估值不是特定债券成交价",
+      "changes": {
+        "5": null,
+        "20": null,
+        "60": null
+      },
+      "drawdown60": null,
+      "level": 1.6516,
+      "unit": "%"
+    }
+  ],
+  "pairs": [
+    {
+      "label": "大盘与中盘",
+      "correlation": 0.9160257323112387,
+      "observations": 60
+    },
+    {
+      "label": "股票与黄金ETF",
+      "correlation": 0.47931421789435624,
+      "observations": 60
+    },
+    {
+      "label": "股票与长久期国债ETF",
+      "correlation": -0.003862857331239773,
+      "observations": 60
+    },
+    {
+      "label": "A股与纳指ETF",
+      "correlation": 0.6625815209203076,
+      "observations": 60
+    }
+  ],
+  "limits": "selected instruments; matched endpoint price/NAV changes, not total return; correlations are historical, not tail hedge certificates"
+}

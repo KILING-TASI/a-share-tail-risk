@@ -2,38 +2,153 @@
   "securities": [
     {
       "symbol": "sh600000",
-      "assetClass": "股票"
+      "assetClass": "股票",
+      "name": "浦发银行"
     },
     {
       "symbol": "sh510300",
-      "assetClass": "股票ETF"
+      "assetClass": "股票ETF",
+      "name": "沪深300ETF"
     },
     {
       "symbol": "sh511010",
-      "assetClass": "债券ETF"
+      "assetClass": "债券ETF",
+      "name": "国债ETF"
     },
     {
       "symbol": "sh518880",
-      "assetClass": "黄金ETF"
+      "assetClass": "黄金ETF",
+      "name": "黄金ETF"
     },
     {
       "symbol": "sh508000",
-      "assetClass": "公募REITs"
+      "assetClass": "公募REITs",
+      "name": "张江REIT"
     },
     {
       "symbol": "sh000001",
-      "assetClass": "股票指数"
+      "assetClass": "股票指数",
+      "name": "上证指数"
     },
     {
       "symbol": "sz399006",
-      "assetClass": "股票指数"
+      "assetClass": "股票指数",
+      "name": "创业板指"
     },
     {
       "symbol": "sh000300",
-      "assetClass": "股票指数"
+      "assetClass": "股票指数",
+      "name": "沪深300"
+    },
+    {
+      "symbol": "sh000016",
+      "assetClass": "股票指数",
+      "name": "上证50"
+    },
+    {
+      "symbol": "sh000905",
+      "assetClass": "股票指数",
+      "name": "中证500"
+    },
+    {
+      "symbol": "sh000852",
+      "assetClass": "股票指数",
+      "name": "中证1000"
+    },
+    {
+      "symbol": "sh000688",
+      "assetClass": "股票指数",
+      "name": "科创50"
+    },
+    {
+      "symbol": "sz399001",
+      "assetClass": "股票指数",
+      "name": "深证成指"
+    },
+    {
+      "symbol": "sh510050",
+      "assetClass": "宽基ETF",
+      "name": "上证50ETF"
+    },
+    {
+      "symbol": "sh510500",
+      "assetClass": "宽基ETF",
+      "name": "中证500ETF"
+    },
+    {
+      "symbol": "sh512100",
+      "assetClass": "宽基ETF",
+      "name": "中证1000ETF"
+    },
+    {
+      "symbol": "sh588000",
+      "assetClass": "宽基ETF",
+      "name": "科创50ETF"
+    },
+    {
+      "symbol": "sz159915",
+      "assetClass": "宽基ETF",
+      "name": "创业板ETF"
+    },
+    {
+      "symbol": "sh512800",
+      "assetClass": "银行ETF",
+      "name": "银行ETF"
+    },
+    {
+      "symbol": "sh512880",
+      "assetClass": "证券ETF",
+      "name": "证券ETF"
+    },
+    {
+      "symbol": "sh512660",
+      "assetClass": "军工ETF",
+      "name": "军工ETF"
+    },
+    {
+      "symbol": "sh512480",
+      "assetClass": "半导体ETF",
+      "name": "半导体ETF"
+    },
+    {
+      "symbol": "sh512170",
+      "assetClass": "医疗ETF",
+      "name": "医疗ETF"
+    },
+    {
+      "symbol": "sh515790",
+      "assetClass": "光伏ETF",
+      "name": "光伏ETF"
+    },
+    {
+      "symbol": "sh512690",
+      "assetClass": "酒类ETF",
+      "name": "酒类ETF"
+    },
+    {
+      "symbol": "sh513100",
+      "assetClass": "海外股票ETF",
+      "name": "纳指ETF"
+    },
+    {
+      "symbol": "sh513500",
+      "assetClass": "海外股票ETF",
+      "name": "标普500ETF"
+    },
+    {
+      "symbol": "sh511260",
+      "assetClass": "债券ETF",
+      "name": "十年国债ETF"
+    },
+    {
+      "symbol": "sh511880",
+      "assetClass": "货币ETF",
+      "name": "货币ETF"
     }
   ],
   "funds": [
-    "000001"
+    "000001",
+    "110011",
+    "161725"
   ]
 }

@@ -105,12 +105,14 @@ def collect(manifest,cutoff,transport=fetch,progress=None):
   for label,url,parser in [('腾讯','https://qt.gtimg.cn/q='+sym,tencent),('新浪','https://hq.sinajs.cn/list='+sym,sina)]:
    rec=get(label+' '+sym,url,lambda b:parser(b,sym))
    if rec:rec.update(source=label,sourceUrl=url);break
+  histurl='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param='+sym+',day,,,120,qfq'
+  history=get('腾讯历史行情 '+sym,histurl,lambda b:price_history(b,sym,cutoff))
+  if rec is None and history:
+   rec={'name':spec.get('name',sym),'value':history[-1]['value'],'date':history[-1]['date'],'currency':'CNY','kind':'quote','source':'腾讯历史收盘','sourceUrl':histurl,'basis':'按截止日取历史收盘，非当前报价'}
   if rec:
-   histurl='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param='+sym+',day,,,120,qfq'
-   history=get('腾讯历史行情 '+sym,histurl,lambda b:price_history(b,sym,cutoff))
-   if history:rec['history']=history;rec['historySourceUrl']=histurl;rec['historyBasis']='本次数据商前复权/指数价格版本，非含分红全收益，不认证历史时点可得性'
+   if history:rec['history']=history;rec['historySourceUrl']=histurl;rec['historyBasis']='本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性'
    rec['unit']='点' if spec['assetClass']=='股票指数' else ('元/股' if spec['assetClass']=='股票' else '元/份')
-   if manifest.get('crossCheck',True):
+   if manifest.get('crossCheck',True) and rec['source'] in ('腾讯','新浪'):
     otherSource='新浪' if rec['source']=='腾讯' else '腾讯'
     otherUrl=('https://hq.sinajs.cn/list=' if otherSource=='新浪' else 'https://qt.gtimg.cn/q=')+sym
     otherParser=sina if otherSource=='新浪' else tencent

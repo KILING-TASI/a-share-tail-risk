@@ -17,3 +17,4 @@ jobs:
           node-version: '22'
       - run: python -m unittest discover -s tests
       - run: node tests/market-js.cjs
+      - run: node tests/research-ui.cjs
