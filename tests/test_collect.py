@@ -42,3 +42,9 @@ class Collect(unittest.TestCase):
    if 'sinajs' in url:return raw
    raise OSError('offline')
   d=c.collect({'securities':[{'symbol':'sh600000','assetClass':'股票'}]},'2026-10-14',transport);r=d['records'][0];self.assertEqual(r['source'],'新浪');self.assertEqual(r['crossCheck']['status'],'unavailable');self.assertEqual(r['crossCheck']['otherSource'],'腾讯')
+
+ def test_historical_close_when_live_quote_is_newer(self):
+  def transport(url,post):
+   if 'fqkline' in url:return json.dumps({'data':{'sh600000':{'qfqday':[['2026-10-14','9','10','11','8','100']]}}}).encode()
+   raise OSError('live not available for requested date')
+  r=c.collect({'securities':[{'symbol':'sh600000','assetClass':'股票','name':'测试'}]},'2026-10-14',transport)['records'][0];self.assertEqual(r['value'],10);self.assertEqual(r['date'],'2026-10-14');self.assertEqual(r['source'],'腾讯历史收盘')

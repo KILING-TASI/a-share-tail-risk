@@ -14,7 +14,7 @@ def main():
     s=(ROOT/'assets/market-dashboard.html').read_text(encoding='utf-8');s=re.sub(r'(<script id="market-data" type="application/json">)[\s\S]*?(</script>)',lambda m:m[1]+encoded+m[2],s,count=1);assets=json.loads(Path(a.assets).read_text(encoding='utf-8')) if a.assets else {}
     ae=json.dumps(assets,ensure_ascii=False,allow_nan=False).replace('<','\\u003c')
     s=s.replace('__ASSET_DATA__',ae)
-    research=json.loads(Path(a.research).read_text(encoding='utf-8')) if a.research else summarize(assets)
+    research=json.loads(Path(a.research).read_text(encoding='utf-8')) if a.research else summarize(assets,data)
     s=s.replace('__RESEARCH_DATA__',json.dumps(research,ensure_ascii=False,allow_nan=False).replace('<','\\u003c'))
     s=s.replace('__RESEARCH_APP__',(ROOT/'assets/research-app.js').read_text(encoding='utf-8'))
     s=s.replace('__APP__',(ROOT/'assets/market-app.js').read_text(encoding='utf-8'));p.parent.mkdir(parents=True,exist_ok=True);p.open('x',encoding='utf-8').write(s);print(str(p))
