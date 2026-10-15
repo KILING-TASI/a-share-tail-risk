@@ -1,0 +1,12 @@
+{
+  "tool": "cashflow",
+  "cash": 50000,
+  "monthlyIncome": 10000,
+  "incomeLossPct": 100,
+  "monthlyExpense": 8000,
+  "monthlyDebt": 2000,
+  "stressedSaleProceeds": 20000,
+  "exitDelayMonths": 8,
+  "months": 12,
+  "synthetic": true
+}

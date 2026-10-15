@@ -1,5 +1,5 @@
 """Automatic selected-asset snapshots. Standard library; no trading or TLS bypass."""
-import argparse,csv,hashlib,io,json,math,os,re,subprocess,sys,tempfile,urllib.request
+import argparse,csv,hashlib,io,json,math,os,re,subprocess,sys,tempfile,time,urllib.request
 from datetime import datetime,date,timezone,timedelta
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -16,19 +16,30 @@ def iso(v):
  if not isinstance(v,str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',v):raise ValueError('date must be YYYY-MM-DD')
  date.fromisoformat(v);return v
 
-def fetch(url,post=False):
+def _fetch_once(url,post=False):
  req=urllib.request.Request(url,data=b'' if post else None,headers={'User-Agent':'Mozilla/5.0','Referer':'https://finance.sina.com.cn/' if 'sinajs.cn' in url else url})
  try:
   with urllib.request.urlopen(req,timeout=15) as r:return r.read()
  except urllib.error.URLError as e:
   # Native Windows trusted HTTPS, not an unverified SSL context.
-  if os.name!='nt' or 'CERTIFICATE_VERIFY_FAILED' not in str(e) or url!='https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml':raise
+  if os.name!='nt' or 'CERTIFICATE_VERIFY_FAILED' not in str(e) or url not in ('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml','https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'):raise
   TRANSPORT_NOTES.append({'source':'ECB','reason':str(e),'fallback':'Windows trusted HTTPS; certificate verification remains enabled'})
   with tempfile.TemporaryDirectory() as td:
    dst=Path(td)/'fx.xml';quoted=str(dst).replace("'","''")
    cmd="$ErrorActionPreference='Stop'; Invoke-WebRequest -Uri 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml' -OutFile '"+quoted+"' -TimeoutSec 15"
+   if url=='https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml':cmd=cmd.replace('eurofxref-hist-90d.xml','eurofxref-hist.xml')
    subprocess.run(['powershell','-NoProfile','-NonInteractive','-Command',cmd],check=True,timeout=25,capture_output=True)
    return dst.read_bytes()
+
+def fetch(url,post=False):
+ # Bounded retries only for transient server/transport failures; never retry 401/403.
+ for attempt in range(3):
+  try:return _fetch_once(url,post)
+  except urllib.error.HTTPError as e:
+   if e.code not in (429,500,502,503,504) or attempt==2:raise
+  except (TimeoutError,ConnectionError,urllib.error.URLError) as e:
+   if 'CERTIFICATE' in str(e) or attempt==2:raise
+  time.sleep(.3*(attempt+1))
 
 def tencent(raw,symbol):
  m=re.search(r'v_'+re.escape(symbol)+r'="([^";]*)"',raw.decode('gb18030'))
@@ -45,7 +56,7 @@ def sina(raw,symbol):
  if len(x)<32:raise ValueError('quote structure mismatch')
  return {'name':x[0],'value':value(x[3]),'previousClose':value(x[2]),'date':iso(x[30]),'observedAt':x[30]+'T'+x[31]+'+08:00','currency':'CNY','unit':'元/份或股','kind':'quote','basis':'数据商报价，非成交承诺'}
 
-def nav(raw,cutoff):
+def nav(raw,cutoff,limit=120):
  text=raw.decode('utf-8');m=re.search(r'var Data_netWorthTrend\s*=\s*(\[.*?\]);',text)
  if not m:raise ValueError('published unit NAV history absent; estimates are not accepted')
  history=[]
@@ -55,12 +66,14 @@ def nav(raw,cutoff):
  history.sort(key=lambda r:r['date'])
  if not history or any(r['value']<=0 for r in history):raise ValueError('NAV absent or invalid')
  name=re.search(r'var fS_name\s*=\s*("[^"]*")',text)
- return {'name':json.loads(name.group(1)) if name else '基金公布净值','value':history[-1]['value'],'date':history[-1]['date'],'currency':'CNY','unit':'单位净值','kind':'nav','history':history[-120:],'basis':'二手披露净值，需回查管理人；非盘中估算，非含分红总收益'}
+ return {'name':json.loads(name.group(1)) if name else '基金公布净值','value':history[-1]['value'],'date':history[-1]['date'],'currency':'CNY','unit':'单位净值','kind':'nav','history':history[-limit:],'basis':'二手披露净值，需回查管理人；非盘中估算，非含分红总收益'}
 
 def price_history(raw,symbol,cutoff):
  data=json.loads(raw)['data'][symbol];rows=data.get('qfqday') or data.get('day') or []
- result=[{'date':iso(x[0]),'value':value(x[2])} for x in rows if x[0]<=cutoff]
+ result=[dict(date=iso(x[0]),value=value(x[2]),open=value(x[1]),high=value(x[3]),low=value(x[4]),volume=value(x[5]) if len(x)>5 else None) for x in rows if x[0]<=cutoff]
  if not result or any(x['value']<=0 for x in result):raise ValueError('dated closing-price history absent')
+ for x in result:
+  if min(x['open'],x['low'],x['high'])<=0 or x['high']<max(x['open'],x['value']) or x['low']>min(x['open'],x['value']) or x['high']<x['low'] or (x['volume'] is not None and x['volume']<0):raise ValueError('inconsistent OHLC or negative volume')
  if any(a['date']>=b['date'] for a,b in zip(result,result[1:])):raise ValueError('history duplicate or unordered')
  return result
 
@@ -84,6 +97,11 @@ def gold(raw,cutoff):
 
 def collect(manifest,cutoff,transport=fetch,progress=None):
  iso(cutoff);records=[];events=[];TRANSPORT_NOTES.clear()
+ history_limit=manifest.get('historyRecords',120)
+ if isinstance(history_limit,bool) or not isinstance(history_limit,int) or not 61<=history_limit<=5000:raise ValueError('historyRecords must be 61-5000')
+ history_start=manifest.get('startDate',str(date.fromisoformat(cutoff)-timedelta(days=120)))
+ iso(history_start)
+ if history_start>cutoff:raise ValueError('history start after cutoff')
  def get(label,url,parser,post=False):
   if progress:progress('正在核验 '+label)
   try:
@@ -105,12 +123,12 @@ def collect(manifest,cutoff,transport=fetch,progress=None):
   for label,url,parser in [('腾讯','https://qt.gtimg.cn/q='+sym,tencent),('新浪','https://hq.sinajs.cn/list='+sym,sina)]:
    rec=get(label+' '+sym,url,lambda b:parser(b,sym))
    if rec:rec.update(source=label,sourceUrl=url);break
-  histurl='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param='+sym+',day,,,120,qfq'
+  histurl='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param='+sym+',day,,,'+str(history_limit)+',qfq'
   history=get('腾讯历史行情 '+sym,histurl,lambda b:price_history(b,sym,cutoff))
   if rec is None and history:
    rec={'name':spec.get('name',sym),'value':history[-1]['value'],'date':history[-1]['date'],'currency':'CNY','kind':'quote','source':'腾讯历史收盘','sourceUrl':histurl,'basis':'按截止日取历史收盘，非当前报价'}
   if rec:
-   if history:rec['history']=history;rec['historySourceUrl']=histurl;rec['historyBasis']='本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性'
+   if history:rec['history']=history;rec['requestedHistoryRecords']=history_limit;rec['historyShortfall']=len(history)<history_limit;rec['historySourceUrl']=histurl;rec['historyBasis']='本次前复权/指数价格版本，非含分红全收益，不认证历史时点可得性'
    rec['unit']='点' if spec['assetClass']=='股票指数' else ('元/股' if spec['assetClass']=='股票' else '元/份')
    if manifest.get('crossCheck',True) and rec['source'] in ('腾讯','新浪'):
     otherSource='新浪' if rec['source']=='腾讯' else '腾讯'
@@ -118,23 +136,32 @@ def collect(manifest,cutoff,transport=fetch,progress=None):
     otherParser=sina if otherSource=='新浪' else tencent
     other=get(otherSource+'交叉核验 '+sym,otherUrl,lambda b:otherParser(b,sym))
     rec['crossCheck']={'otherSource':otherSource,'status':'consistent' if other and other['date']==rec['date'] and abs(other['value']-rec['value'])<=max(.0001,abs(rec['value'])*.000001) else ('divergent' if other else 'unavailable'),'otherValue':other['value'] if other else None,'otherDate':other['date'] if other else None,'note':'同日两商报价比较，不认证实时性、独立底层或来源真实'}
-  records.append(dict(rec or {},id=sym,assetClass=spec['assetClass'],status='available' if rec else 'unavailable',tier='secondary',redistribution='permission-unconfirmed'))
+  records.append(dict(rec or {},id=sym,region=spec.get('region','中国内地'),underlyingRegion=spec.get('underlyingRegion','中国内地'),assetClass=spec['assetClass'],status='available' if rec else 'unavailable',tier='secondary',redistribution='permission-unconfirmed'))
  for code in manifest.get('funds',[]):
   if not re.fullmatch(r'\d{6}',code):raise ValueError('invalid fund code')
-  url='https://fund.eastmoney.com/pingzhongdata/'+code+'.js';r=get('天天基金',url,lambda b:nav(b,cutoff));records.append(dict(r or {},id=code,name=(r or {}).get('name','基金'+code),assetClass='公募基金',status='available' if r else 'unavailable',tier='secondary',source='天天基金',sourceUrl=url,redistribution='permission-unconfirmed'))
+  url='https://fund.eastmoney.com/pingzhongdata/'+code+'.js';r=get('天天基金',url,lambda b:nav(b,cutoff,history_limit));records.append(dict(r or {},id=code,name=(r or {}).get('name','基金'+code),assetClass='公募基金',status='available' if r else 'unavailable',tier='secondary',source='天天基金',sourceUrl=url,redistribution='permission-unconfirmed'))
  url='https://www.sge.com.cn/sjzx/quotation_daily_new?start_date='+cutoff+'&end_date='+cutoff;r=get('上海黄金交易所',url,lambda b:gold(b,cutoff));records.append(dict(r or {},id='SGE-Au9999',assetClass='黄金现货合约',status='available' if r else 'unavailable',tier='primary',sourceUrl=url))
- url='https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml';r=get('欧洲央行',url,lambda b:fx(b,cutoff))
+ url='https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml' if manifest.get('longFxHistory') else 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml';r=get('欧洲央行',url,lambda b:[x for x in fx(b,cutoff) if x['date']>=history_start])
  for pair in ('EUR/CNY','USD/CNY','JPY/CNY','GBP/CNY'):
   records.append(dict(id=pair,name=pair,assetClass='外汇参考汇率',status='available' if r else 'unavailable',tier='primary',sourceUrl=url,**({'value':r[-1][pair],'date':r[-1]['date'],'currency':'CNY','unit':'人民币/1单位外币','history':[{'date':x['date'],'value':x[pair]} for x in r],'basis':'ECB参考汇率及同日交叉换算，非国内银行成交价'} if r else {})))
- url='https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?startDate='+str(date.fromisoformat(cutoff)-timedelta(days=120))+'&endDate='+cutoff
+ url='https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?startDate='+history_start+'&endDate='+cutoff
  def shibor(b):
   rows=[{'date':iso(x['showDateCN']),'value':value(x['ON'])} for x in json.loads(b)['records'] if x['showDateCN']<=cutoff];return sorted(rows,key=lambda x:x['date'])
- r=get('中国货币网',url,shibor);records.append(dict(id='SHIBOR-ON',name='Shibor隔夜',assetClass='货币市场利率',status='available' if r else 'unavailable',tier='primary',sourceUrl=url,**({'date':r[-1]['date'],'value':r[-1]['value'],'unit':'%','kind':'rate','history':r,'basis':'银行间拆借参考利率，不是个人存款利率'} if r else {})))
+ r=get('中国货币网',url,shibor)
+ if not r and (date.fromisoformat(cutoff)-date.fromisoformat(history_start)).days>120:
+  url='https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?startDate='+str(date.fromisoformat(cutoff)-timedelta(days=120))+'&endDate='+cutoff
+  r=get('中国货币网短窗口回退',url,shibor)
+ records.append(dict(id='SHIBOR-ON',name='Shibor隔夜',assetClass='货币市场利率',status='available' if r else 'unavailable',tier='primary',sourceUrl=url,**({'date':r[-1]['date'],'value':r[-1]['value'],'unit':'%','kind':'rate','history':r,'basis':'银行间拆借参考利率，不是个人存款利率；实际取得区间见记录'} if r else {})))
  url='https://yield.chinabond.com.cn/cbweb-pbc-web/pbc/pbcInit?locale=zh_CN'
  def bonds(b):
   rows=json.loads(b);r=next(x for x in rows if x['ycDefName']=='中债国债收益率曲线');iso(r['worktime']);points=[{'years':value(x),'yieldPct':value(y)} for x,y in r['seriesData'] if x in (1,3,5,10,30)];return {'date':r['worktime'],'curve':points,'value':next(x['yieldPct'] for x in points if x['years']==10),'name':'中债国债10年','kind':'yield','unit':'%','basis':'接口worktime原样保留；曲线估值不是特定债券成交价'}
  r=get('中债',url,bonds,True);records.append(dict(r or {},id='CGB-10Y',assetClass='国债收益率',status='available' if r else 'unavailable',tier='primary',sourceUrl=url))
- for r in records:r['freshness']='same-date' if r.get('date')==cutoff else ('older-observation' if r.get('date') else 'unknown')
+ for r in records:
+  r['freshness']='same-date' if r.get('date')==cutoff else ('older-observation' if r.get('date') else 'unknown')
+  r['frequency']='daily';r['actualHistoryStart']=r.get('history',[{}])[0].get('date') if r.get('history') else None;r['actualHistoryEnd']=r.get('history',[{}])[-1].get('date') if r.get('history') else None
+  r['requestedStartDate']=history_start;r['requestedHistoryRecords']=history_limit
+  r['historyShortfall']=len(r.get('history',[]))<history_limit
+  r['availableAt']=None;r['availabilityNote']='retrieved latest source version; historical publication timestamp unverified'
  return {'schemaVersion':'assets-v1','targetSession':cutoff,'retrievedAt':datetime.now(timezone.utc).isoformat(),'records':records,'events':events,'scope':'selected instruments and reference series, not entire market or personal assets','transportNotes':list(TRANSPORT_NOTES),'manualClasses':['存款合同利率','理财产品兑付和赎回条款','房地产与非上市股权估值','个人债务、担保与经营现金流']}
 
 def merge_previous(current,previous):
@@ -144,7 +171,9 @@ def merge_previous(current,previous):
   if not prev:continue
   if r['status']=='unavailable' and prev.get('value') is not None and prev.get('date','')<=current['targetSession']:
    r.update({k:v for k,v in prev.items() if k not in ('status','freshness')});r['status']='stale-cache';r['freshness']='cached-not-refreshed';continue
-  if r.get('historyBasis') and r.get('history'):continue
+  # A newly returned series is one provider revision. Do not truncate long series
+  # or splice old NAV/FX revisions into it merely to fill a requested window.
+  if r['status']=='available' and r.get('history'):continue
   if r['status']=='available' and prev.get('unit')==r.get('unit') and prev.get('currency')==r.get('currency'):
    points={x['date']:x for x in prev.get('history',[]) if x['date']<=current['targetSession']}
    if prev.get('date') and prev.get('value') is not None:points[prev['date']]={'date':prev['date'],'value':prev['value']}

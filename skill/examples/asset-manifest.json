@@ -128,12 +128,14 @@
     {
       "symbol": "sh513100",
       "assetClass": "海外股票ETF",
-      "name": "纳指ETF"
+      "name": "纳指ETF",
+      "underlyingRegion": "美国"
     },
     {
       "symbol": "sh513500",
       "assetClass": "海外股票ETF",
-      "name": "标普500ETF"
+      "name": "标普500ETF",
+      "underlyingRegion": "美国"
     },
     {
       "symbol": "sh511260",
@@ -144,11 +146,42 @@
       "symbol": "sh511880",
       "assetClass": "货币ETF",
       "name": "货币ETF"
+    },
+    {
+      "symbol": "sz159920",
+      "name": "恒生ETF",
+      "assetClass": "跨境股票ETF",
+      "region": "中国内地上市",
+      "underlyingRegion": "中国香港"
+    },
+    {
+      "symbol": "sh513180",
+      "name": "恒生科技ETF",
+      "assetClass": "跨境股票ETF",
+      "region": "中国内地上市",
+      "underlyingRegion": "中国香港"
+    },
+    {
+      "symbol": "sh513030",
+      "name": "德国ETF",
+      "assetClass": "跨境股票ETF",
+      "region": "中国内地上市",
+      "underlyingRegion": "德国"
+    },
+    {
+      "symbol": "sh513520",
+      "name": "日经ETF",
+      "assetClass": "跨境股票ETF",
+      "region": "中国内地上市",
+      "underlyingRegion": "日本"
     }
   ],
   "funds": [
     "000001",
     "110011",
     "161725"
-  ]
+  ],
+  "historyRecords": 750,
+  "startDate": "2016-01-01",
+  "longFxHistory": true
 }

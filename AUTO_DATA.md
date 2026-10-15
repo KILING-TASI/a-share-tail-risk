@@ -56,3 +56,7 @@ CSV列：`date,code,close,prevClose,volume,status,limitDown`。status仅接受tr
 存款期限与提前支取、理财底层资产与赎回、房地产与非上市股权估值、债务担保和经营现金流，需要合同、原始披露和具体对象。没有资料保持未知。基金估算、黄金ETF价格、国债收益率、房价指数都不能自动替代这些对象的实际价值或可用现金。
 
 历史报告：若当前报价已经晚于截止日，自动回退到按截止日截断的历史收盘，保留来源和价格版本；不把新日期报价改标为旧日。研究页用共同端点比较5/20/60期，不用利率水平的相对变化当作资产收益。
+
+## 扩展采集与匹配
+
+现默认清单43项，证券/基金请求750记录点；汇率从2016年起，Shibor长区间无值会尝试短窗口并记录实际范围。多国宏观运行 `python skill/scripts/collect_context.py --manifest skill/examples/context-manifest.json --session 2026-10-14 --output local-snapshots/context-v1.json`（单独Skill移除路径前缀skill/）。完整联动命令已包含宏观采集。细节见 [采集匹配契约](skill/references/data-pipeline.md)。

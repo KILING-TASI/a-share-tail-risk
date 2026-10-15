@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-15",
+  "python": "3.12.10",
+  "coldLocalRenderPlusFourToolsSeconds": 0.404,
+  "publicHtmlBytes": 5743580,
+  "assetRecords": 43,
+  "macroObservations": 737,
+  "networkExcluded": true,
+  "limits": "single-machine measurement, not service SLA; rerun with bundled input, no external caches"
+}

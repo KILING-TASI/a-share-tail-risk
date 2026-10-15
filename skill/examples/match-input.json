@@ -1,0 +1,33 @@
+{
+  "synthetic": true,
+  "mode": "premium",
+  "cutoff": "2026-10-14",
+  "left": {
+    "entityId": "SYNTHETIC:ETF",
+    "shareClass": "synthetic-listed-unit",
+    "metric": "market_price",
+    "region": "CHN",
+    "frequency": "daily",
+    "period": "2026-10-14",
+    "value": 1.05,
+    "unit": "per-unit",
+    "currency": "CNY",
+    "basis": "unit-price",
+    "sourceUrl": "https://example.com/artificial-fixture",
+    "availableAt": null
+  },
+  "right": {
+    "entityId": "SYNTHETIC:ETF",
+    "shareClass": "synthetic-listed-unit",
+    "metric": "published_unit_nav",
+    "region": "CHN",
+    "frequency": "daily",
+    "period": "2026-10-14",
+    "value": 1,
+    "unit": "per-unit",
+    "currency": "CNY",
+    "basis": "unit-price",
+    "sourceUrl": "https://example.com/artificial-fixture",
+    "availableAt": null
+  }
+}

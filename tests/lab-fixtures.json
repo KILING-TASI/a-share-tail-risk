@@ -1,0 +1,69 @@
+[
+  {
+    "tool": "fragility",
+    "equity": 100000,
+    "debt": 50000,
+    "cash": 30000,
+    "cashNeed": 20000,
+    "equityFloor": 20000,
+    "haircutPct": 10,
+    "maintenanceRatio": 1.3,
+    "shocksPct": [
+      0,
+      10,
+      20,
+      30,
+      50,
+      70,
+      100
+    ]
+  },
+  {
+    "tool": "barbell",
+    "safeAmount": 100000,
+    "safeHaircutPct": 5,
+    "blockedSafe": 10000,
+    "requiredReserve": 90000,
+    "riskAmount": 20000,
+    "maxLossPct": 100,
+    "lossBudget": 20000,
+    "cost": 500,
+    "lossBoundVerified": false,
+    "commonRiskReviewed": false
+  },
+  {
+    "tool": "protection",
+    "premiumPerTerm": 1000,
+    "terms": 4,
+    "fees": 200,
+    "cashReserve": 50000,
+    "opportunityRatePct": 2,
+    "months": 12,
+    "budget": 5000,
+    "scenarios": [
+      {
+        "label": "无回款",
+        "grossPayout": 0,
+        "basisSlippage": 0,
+        "underlyingLoss": 0
+      },
+      {
+        "label": "共同冲击",
+        "grossPayout": 15000,
+        "basisSlippage": 1000,
+        "underlyingLoss": 30000
+      }
+    ]
+  },
+  {
+    "tool": "cashflow",
+    "cash": 50000,
+    "monthlyIncome": 10000,
+    "incomeLossPct": 100,
+    "monthlyExpense": 8000,
+    "monthlyDebt": 2000,
+    "stressedSaleProceeds": 20000,
+    "exitDelayMonths": 8,
+    "months": 12
+  }
+]

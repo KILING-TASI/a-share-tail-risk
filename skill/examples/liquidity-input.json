@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "records": [
+    {
+      "id": "人工ETF示例",
+      "price": 1.05,
+      "nav": 1,
+      "priceDate": "2026-10-14",
+      "navDate": "2026-10-14",
+      "priceCurrency": "CNY",
+      "navCurrency": "CNY",
+      "navType": "published-unit-nav",
+      "sourceUrl": "https://example.com/artificial-fixture",
+      "redemptionStatus": "人工假设：可赎回，未核验公告",
+      "arrivalTerms": "人工假设T+3，非真实产品条款",
+      "priceEntityId": "SYNTHETIC:ETF",
+      "navEntityId": "SYNTHETIC:ETF",
+      "shareClass": "synthetic-listed-unit"
+    }
+  ]
+}

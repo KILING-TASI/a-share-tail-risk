@@ -1,0 +1,14 @@
+{
+  "tool": "barbell",
+  "safeAmount": 100000,
+  "safeHaircutPct": 5,
+  "blockedSafe": 10000,
+  "requiredReserve": 90000,
+  "riskAmount": 20000,
+  "maxLossPct": 100,
+  "lossBudget": 20000,
+  "cost": 500,
+  "lossBoundVerified": false,
+  "commonRiskReviewed": false,
+  "synthetic": true
+}

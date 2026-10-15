@@ -1,0 +1,23 @@
+{
+  "startYear": 2010,
+  "endYear": 2025,
+  "regions": [
+    "CHN",
+    "HKG",
+    "USA",
+    "JPN",
+    "DEU",
+    "GBR",
+    "IND",
+    "BRA"
+  ],
+  "indicators": [
+    "NY.GDP.MKTP.KD.ZG",
+    "FP.CPI.TOTL.ZG",
+    "SL.UEM.TOTL.ZS",
+    "NV.IND.MANF.ZS",
+    "NE.EXP.GNFS.ZS",
+    "FM.LBL.BMNY.GD.ZS"
+  ],
+  "probeChinaProvinces": true
+}

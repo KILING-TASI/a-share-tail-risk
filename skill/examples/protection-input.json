@@ -1,0 +1,25 @@
+{
+  "tool": "protection",
+  "premiumPerTerm": 1000,
+  "terms": 4,
+  "fees": 200,
+  "cashReserve": 50000,
+  "opportunityRatePct": 2,
+  "months": 12,
+  "budget": 5000,
+  "scenarios": [
+    {
+      "label": "无回款",
+      "grossPayout": 0,
+      "basisSlippage": 0,
+      "underlyingLoss": 0
+    },
+    {
+      "label": "共同冲击",
+      "grossPayout": 15000,
+      "basisSlippage": 1000,
+      "underlyingLoss": 30000
+    }
+  ],
+  "synthetic": true
+}
